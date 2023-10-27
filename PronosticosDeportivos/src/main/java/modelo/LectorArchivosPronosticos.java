@@ -18,7 +18,7 @@ public class LectorArchivosPronosticos
 		LineasArchivoPronostico= new ArrayList<ArchivoPronostico>();
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void parserArchivo()
 	{
 		List<ArchivoPronostico> listPronostico=null;
@@ -44,5 +44,59 @@ public class LectorArchivosPronosticos
 	        
 	}
 	
-	//public ArrayList<ArchivoResultado> listarResultado()
+	public  ArrayList<Pronostico> agregarObjPronostico(List<ArchivoPronostico> pronosticos)
+	{
+		ArrayList<Pronostico> pronosticoF=new ArrayList<Pronostico>(); 
+		for (ArchivoPronostico pronostico1: pronosticos)
+		{
+			// obtener string true or false  de los sig 3 valores y convertirlos a  boolean
+			
+			boolean gana=Boolean.parseBoolean(pronostico1.getGana1()); 
+			boolean gana2=Boolean.parseBoolean(pronostico1.getGana2());
+			boolean empata=Boolean.parseBoolean(pronostico1.getEmpata());
+			
+			// inicializar equipo, partido y pronostico
+			Equipo equipo1 = new Equipo();
+			
+			Equipo equipo2 = new Equipo();
+			
+			Partido part=new Partido();	
+			
+			Pronostico pron= new Pronostico();
+		//	Boolean.parseBoolean(pronostico.getEmpata());
+			
+			//del archivo de pronosticos saco el nombre del equipo y lo agrego al obj equipo correspondiente
+			equipo1.setNombre(pronostico1.getEquipo1());
+			part.setEquipo1(equipo1);
+			
+			equipo2.setNombre(pronostico1.getEquipo2());
+			part.setEquipo2(equipo2);
+			
+			//settear partido
+			pron.setPartido(part);
+		//	ResultadoEnum resultado = part.resultado(equipo1);
+			
+			// aunque funciona es necesario setteearlo correctamente 
+			
+			if (gana) // si gana1 es true entonces el equipo seleccinado por la persona es el uno y el resultado es Ganador
+			{
+				pron.setEquipo(equipo1);
+				pron.setResultado(ResultadoEnum.Ganador);
+				
+			}
+			else if (empata) //si empata es true entonces el equipo seleccinado por la persona no importa y el resultado es empate
+			{
+				pron.setEquipo(equipo1);
+				//pron.setEquipo(equipo2);
+				pron.setResultado(ResultadoEnum.Empate);
+			}
+			else if (gana2) //si el resultado es true entonces el equipo seleccinado por la persona no importa y el resultado es empate
+			{
+				pron.setEquipo(equipo2);
+				pron.setResultado(ResultadoEnum.Ganador);
+			}
+			pronosticoF.add(pron);	
+		}
+		return pronosticoF; // devuelve lista de pronosticos
+	}
 }
