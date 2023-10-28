@@ -11,4 +11,12 @@ public class Equipo
 	private String Descripcion;
 	
 
+	public boolean equals(Equipo equipo2) {
+		if(this.nombre.equals(equipo2.getNombre())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 }

@@ -17,12 +17,12 @@ public class Ronda
 	public int puntos (ArrayList<Pronostico> prono)
 	{
 		int punto=0;
+		
 		for (Pronostico pronostico : prono) 
 		{
 			
 			for (Partido partido2 : partidos) 
 			{
-				
 				if (pronostico.getPartido().equals(partido2)) 
 				{
 					ResultadoEnum res=partido2.resultado(pronostico.getEquipo());
@@ -30,6 +30,7 @@ public class Ronda
 					
 				}
 			}
+			
 		}
 		return punto;
 	}

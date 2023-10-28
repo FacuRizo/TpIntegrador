@@ -15,24 +15,21 @@ public class Inicio
 		try
 		{
 			
-			
 			LectorArchivosResultado lectorResultado =new LectorArchivosResultado(args[0]);
 			lectorResultado.parserArchivo();
 			List<ArchivoResultado> partidos = lectorResultado.LineasArchivoResultado;			
 			partidosF=lectorResultado.agregarObjPartido(partidos);
+			
+			// agregar a ronda
 			Ronda ronda1=new Ronda();
 			ronda1.setPartidos(partidosF);
 			ronda1.setNro("1");
-
-			// agregar a ronda
-			
-			
-			
 			
 			LectorArchivosPronosticos lectorPronostico=new LectorArchivosPronosticos(args[1]);
 			lectorPronostico.parserArchivo();
 			List<ArchivoPronostico> pronosticos = lectorPronostico.LineasArchivoPronostico;
 			pronosticoF=lectorPronostico.agregarObjPronostico(pronosticos);
+			
 			System.out.println(ronda1.puntos(pronosticoF));
 			
 

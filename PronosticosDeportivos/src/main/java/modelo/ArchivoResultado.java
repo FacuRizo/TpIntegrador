@@ -12,9 +12,9 @@ public class ArchivoResultado
 	@CsvBindByPosition(position= 0)
 	private String Equipo1;
 	@CsvBindByPosition(position= 1)
-	private Integer CantGoles1;
+	private String CantGoles1;
 	@CsvBindByPosition(position= 2)
-	private Integer CantGoles2;
+	private String CantGoles2;
 	@CsvBindByPosition(position= 3)
 	private String Equipo2;
 	

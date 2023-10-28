@@ -16,10 +16,12 @@ public class Pronostico
 	{
 		if(resReal.equals(resultado))
 		{
+			System.out.println("Le pegaste");
 			return 3;
 		}
 		else
 		{
+			System.out.println("No le pegaste");
 			return 0;
 		}
 

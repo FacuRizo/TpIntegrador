@@ -50,6 +50,11 @@ public class LectorArchivosResultado
 		ArrayList<Partido> partidosF=new ArrayList<Partido>(); 
 		for (ArchivoResultado partido: partidos)
 		{
+			
+			//boolean gana=Boolean.parseBoolean(pronostico1.getGana1());
+			int cantGoles1 = Integer.parseInt(partido.getCantGoles1());
+			int cantGoles2 = Integer.parseInt(partido.getCantGoles2());
+			
 			//inicializamos
 			Equipo equipo1 = new Equipo();
 			Equipo equipo2 = new Equipo();
@@ -60,13 +65,18 @@ public class LectorArchivosResultado
 			//setteamos equipos y goles
 			part.setEquipo1(equipo1);
 			part.setEquipo2(equipo2);
-			part.setGolesEquipo1(partido.getCantGoles1());
-			part.setGolesEquipo2(partido.getCantGoles2());
+			part.setGolesEquipo1(cantGoles1);
+			part.setGolesEquipo2(cantGoles2);
 			partidosF.add(part);		
 		
 			
 		}
 		return partidosF; // devolvemos lista de partidos
+	}
+
+	private int parseInt(Integer cantGoles1) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
 
