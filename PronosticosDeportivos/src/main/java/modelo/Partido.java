@@ -17,7 +17,7 @@ public class Partido
 	{
 		ResultadoEnum res=null;
 		Equipo eq=this.comparar();
-		if (eq.getNombre()==aEquipo.getNombre())
+		if (eq.getNombre()==aEquipo.getNombre()) // cambiar a equals
 		{
 			res= ResultadoEnum.Ganador;
 		}

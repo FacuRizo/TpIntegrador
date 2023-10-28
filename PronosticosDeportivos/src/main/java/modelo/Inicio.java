@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -19,6 +20,12 @@ public class Inicio
 			lectorResultado.parserArchivo();
 			List<ArchivoResultado> partidos = lectorResultado.LineasArchivoResultado;			
 			partidosF=lectorResultado.agregarObjPartido(partidos);
+			Ronda ronda1=new Ronda();
+			ronda1.setPartidos(partidosF);
+			ronda1.setNro("1");
+
+			// agregar a ronda
+			
 			
 			
 			
@@ -26,7 +33,9 @@ public class Inicio
 			lectorPronostico.parserArchivo();
 			List<ArchivoPronostico> pronosticos = lectorPronostico.LineasArchivoPronostico;
 			pronosticoF=lectorPronostico.agregarObjPronostico(pronosticos);
+			System.out.println(ronda1.puntos(pronosticoF));
 			
+
 		}
 		catch (NoSuchElementException e)
 		{

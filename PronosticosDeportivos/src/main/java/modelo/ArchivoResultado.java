@@ -18,5 +18,7 @@ public class ArchivoResultado
 	@CsvBindByPosition(position= 3)
 	private String Equipo2;
 	
+	// equipo1,cantgoles1,cantgoles2,equipo2
+
 	
 }

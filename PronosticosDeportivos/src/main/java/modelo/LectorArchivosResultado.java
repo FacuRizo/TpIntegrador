@@ -10,7 +10,7 @@ import com.opencsv.bean.CsvToBeanBuilder;
 public class LectorArchivosResultado 
 {
 	String rutaArchivoResultado;
-	String rutaArchivoPronostico;
+	
 	List<ArchivoResultado> LineasArchivoResultado;
 	
 	public LectorArchivosResultado (String rutaArchivoResultado)
@@ -37,10 +37,10 @@ public class LectorArchivosResultado
 	                    .parse();
 
 	        } catch (IOException e) 
-		  {
+		   {
 	        e.printStackTrace();
 	        
-		  }
+		   }
 		  this.LineasArchivoResultado=listResultado;
 	        
 	}
