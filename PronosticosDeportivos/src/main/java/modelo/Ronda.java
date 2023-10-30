@@ -35,5 +35,22 @@ public class Ronda
 		return punto;
 	}
 	
+	public int puntosInd (ArrayList<Pronostico> prono , Partido partido)
+	{
+		int punto=0;
+		for (Pronostico pronostico : prono) 
+		{			
+				if (pronostico.getPartido().equals(partido)) 
+				{
+					ResultadoEnum res=partido.resultado(pronostico.getEquipo());
+					punto=pronostico.puntos(res);
+					
+				}	
+			
+		}
+		return  punto;
+	}
+	
+
 	
 }

@@ -74,9 +74,5 @@ public class LectorArchivosResultado
 		return partidosF; // devolvemos lista de partidos
 	}
 
-	private int parseInt(Integer cantGoles1) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }
 

@@ -31,15 +31,15 @@ public class Partido
 		}else {
 			res= ResultadoEnum.Perdedor;
 		}
-		System.out.println(res);
+		//System.out.println(res);
 		return res;
 	}
 	
 	private String comparar ()
-	 // 
+	
 	{
-		/*try 
-		{*/ String eqGanador = "";
+		
+		 String eqGanador = "";
 		
 			if (this.golesEquipo1>this.golesEquipo2)
 			{
@@ -54,10 +54,7 @@ public class Partido
 				eqGanador=this.equipo2.getNombre();
 			}
 		return eqGanador;
-		/*} catch (Exception e) 
-		{
-			// TODO: Agregar si hay negativos
-		}*/
+		
 		
 	}
 }
