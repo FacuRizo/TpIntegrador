@@ -13,7 +13,7 @@ public class ManejoRonda
 	public ArrayList<Ronda> crearRondas(ArrayList<Partido> partidoF)
 	{
 		Map<Integer, Ronda> rondas =new HashMap<>();
-		ArrayList<Ronda> rondaF= new ArrayList<Ronda>();
+		//ArrayList<Ronda> rondaF= new ArrayList<Ronda>();
 		
 		for (Partido partido : partidoF) 
 		{
@@ -30,7 +30,8 @@ public class ManejoRonda
 				}
 				ronda.getPartidos().add(partido);
 		}
-		rondaF = (ArrayList<Ronda>) rondas.values();
+		//rondaF = (ArrayList<Ronda>) rondas.values();
+		ArrayList<Ronda> rondaF = new ArrayList<>(rondas.values());
 		return rondaF;
 		
 	}

@@ -13,6 +13,7 @@ public class Inicio
 		ArrayList<Partido> partidosF=new ArrayList<Partido>(); 
 		ArrayList<Pronostico> pronosticoF=new ArrayList<Pronostico>(); 
 		ArrayList<Ronda> rondaF=new ArrayList<Ronda>(); 
+		
 		Interfaz menu= new Interfaz();
 		try
 		{
@@ -29,15 +30,21 @@ public class Inicio
 			// repetir till   lista de partidos sea completamente agregada
 			// revisar, tiene q haber una forma mas facil.
 			/*Ronda ronda1=new Ronda();
+			 *
 			ronda1.setPartidos(partidosF);
 			ronda1.setNro("1");
 			rondaF.add(ronda1);*/
+			
+		
+			
+			
 			
 			LectorArchivosPronosticos lectorPronostico=new LectorArchivosPronosticos(args[1]);
 			lectorPronostico.parserArchivo();
 			List<ArchivoPronostico> pronosticos = lectorPronostico.LineasArchivoPronostico;
 			pronosticoF=lectorPronostico.agregarObjPronostico(pronosticos);
 			
+		
 			//System.out.println(ronda1.puntos(pronosticoF));
 			
 			//menu.menu(partidosF, pronosticoF);
