@@ -14,6 +14,7 @@ public class ManejoRonda
 	{
 		Map<Integer, Ronda> rondas =new HashMap<>();
 		ArrayList<Ronda> rondaF= new ArrayList<Ronda>();
+		
 		for (Partido partido : partidoF) 
 		{
 				int nroRonda =partido.getNroRonda();
