@@ -55,11 +55,13 @@ public class LectorArchivosResultado
 			int cantGoles1 = Integer.parseInt(partido.getCantGoles1());
 			int cantGoles2 = Integer.parseInt(partido.getCantGoles2());
 			
+			int ronda = Integer.parseInt(partido.getNroRonda());
+			
 			//inicializamos
 			Equipo equipo1 = new Equipo();
 			Equipo equipo2 = new Equipo();
 			Partido part=new Partido();
-			//seteamos nomnbre
+			//seteamos nombre
 			equipo1.setNombre(partido.getEquipo1());
 			equipo2.setNombre(partido.getEquipo2());
 			//setteamos equipos y goles
@@ -67,6 +69,7 @@ public class LectorArchivosResultado
 			part.setEquipo2(equipo2);
 			part.setGolesEquipo1(cantGoles1);
 			part.setGolesEquipo2(cantGoles2);
+			part.setNroRonda(ronda);
 			partidosF.add(part);		
 		
 			

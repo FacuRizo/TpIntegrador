@@ -69,7 +69,7 @@ public class Interfaz
 				   
 				   String part=part1 + " vs "+ part2;
 			   
-			   int nro=Integer.parseInt(ronda.getNro());
+			   int nro=(ronda.getNro());
 			   int pto=ronda.puntosInd(pronos, partido);
 			   System.out.printf("%-35s%-27s%-27s\n", part, nro, pto);
 			   }

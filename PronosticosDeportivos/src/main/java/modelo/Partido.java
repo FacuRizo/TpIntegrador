@@ -10,6 +10,7 @@ public class Partido
 	private Equipo equipo2;
 	private int golesEquipo1;
 	private int golesEquipo2;
+	private int nroRonda;
 
 	public boolean equals(Partido part) {
 		if(this.equipo1.equals(part.getEquipo1()) && this.equipo2.equals(part.getEquipo2())) {

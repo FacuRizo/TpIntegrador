@@ -22,11 +22,16 @@ public class Inicio
 			List<ArchivoResultado> partidos = lectorResultado.LineasArchivoResultado;			
 			partidosF=lectorResultado.agregarObjPartido(partidos);
 			
-			// agregar a ronda
-			Ronda ronda1=new Ronda();
+			// arreglar esto parasegunda entrega
+			//  nuevo obj ronda - nueva lista ronda - si lista vacia- set rona to 1 -recorred lista partidos-
+			
+			//si ronda partido = ronda seteada entonces agregar ese partido a a nueva lista de partidos de esea ronda obj
+			// repetir till   lista de partidos sea completamente agregada
+			// revisar, tiene q haber una forma mas facil.
+			/*Ronda ronda1=new Ronda();
 			ronda1.setPartidos(partidosF);
 			ronda1.setNro("1");
-			rondaF.add(ronda1);
+			rondaF.add(ronda1);*/
 			
 			LectorArchivosPronosticos lectorPronostico=new LectorArchivosPronosticos(args[1]);
 			lectorPronostico.parserArchivo();
@@ -44,6 +49,8 @@ public class Inicio
 			System.err.println("Se esperaban 2 argumentos");
 		}
 	}
+	
+	
 	
 	
 }

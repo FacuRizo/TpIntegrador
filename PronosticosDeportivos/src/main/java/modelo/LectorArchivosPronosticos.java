@@ -55,7 +55,9 @@ public class LectorArchivosPronosticos
 			boolean gana2=Boolean.parseBoolean(pronostico1.getGana2());
 			boolean empata=Boolean.parseBoolean(pronostico1.getEmpata());
 			
+			
 			// inicializar equipo, partido y pronostico
+			
 			Equipo equipo1 = new Equipo();
 			
 			Equipo equipo2 = new Equipo();
@@ -63,6 +65,7 @@ public class LectorArchivosPronosticos
 			Partido part=new Partido();	
 			
 			Pronostico pron= new Pronostico();
+			
 		//	Boolean.parseBoolean(pronostico.getEmpata());
 			
 			//del archivo de pronosticos saco el nombre del equipo y lo agrego al obj equipo correspondiente
@@ -72,8 +75,10 @@ public class LectorArchivosPronosticos
 			equipo2.setNombre(pronostico1.getEquipo2());
 			part.setEquipo2(equipo2);
 			
+			
 			//settear partido
 			pron.setPartido(part);
+			pron.setParticipante(pronostico1.getParticipante());
 		//	ResultadoEnum resultado = part.resultado(equipo1);
 			
 			// aunque funciona es necesario setteearlo correctamente 
@@ -90,7 +95,7 @@ public class LectorArchivosPronosticos
 				//pron.setEquipo(equipo2);
 				pron.setResultado(ResultadoEnum.Empate);
 			}
-			else if (gana2) //si el resultado es true entonces el equipo seleccinado por la persona no importa y el resultado es empate
+			else if (gana2) //
 			{
 				pron.setEquipo(equipo2);
 				pron.setResultado(ResultadoEnum.Ganador);

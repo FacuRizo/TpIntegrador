@@ -9,7 +9,8 @@ public class Pronostico
 	private Partido partido;
 	private Equipo equipo;
 	private ResultadoEnum resultado;
-	//private int puntos;
+	private String participante;
+
 	
 	
 	public int puntos(ResultadoEnum resReal)

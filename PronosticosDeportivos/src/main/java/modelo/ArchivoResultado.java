@@ -10,6 +10,8 @@ import lombok.Setter;
 public class ArchivoResultado 
 {
 	@CsvBindByPosition(position= 0)
+	private String NroRonda;
+	@CsvBindByPosition(position= 0)
 	private String Equipo1;
 	@CsvBindByPosition(position= 1)
 	private String CantGoles1;
@@ -18,7 +20,7 @@ public class ArchivoResultado
 	@CsvBindByPosition(position= 3)
 	private String Equipo2;
 	
-	// equipo1,cantgoles1,cantgoles2,equipo2
+	//  NroRonda,equipo1,cantgoles1,cantgoles2,equipo2
 
 	
 }

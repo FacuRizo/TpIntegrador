@@ -1,7 +1,6 @@
 package modelo;
 
 import java.util.ArrayList;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +8,7 @@ import lombok.Setter;
 public class Ronda 
 {
 
-	private String nro;
+	private int nro;
 	private ArrayList<Partido> partidos;
 	
 	
@@ -34,7 +33,7 @@ public class Ronda
 		}
 		return punto;
 	}
-	
+	// Esto aunque funciona probablemente no deberia estar aca
 	public int puntosInd (ArrayList<Pronostico> prono , Partido partido)
 	{
 		int punto=0;
@@ -50,7 +49,8 @@ public class Ronda
 		}
 		return  punto;
 	}
-	
+	//
+
+}
 
 	
-}
