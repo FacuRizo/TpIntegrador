@@ -1,7 +1,7 @@
 package modelo;
 
 import com.opencsv.bean.CsvBindByPosition;
-//import com.opencsv.bean.CsvDate;
+
 
 import lombok.Getter;
 import lombok.Setter;
