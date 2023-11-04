@@ -10,9 +10,8 @@ public class Interfaz
 	 
 	   public void menu(ArrayList<Partido> part , ArrayList<Pronostico> pron,ArrayList<Ronda> ron )
 	   {
-		    ManejoRonda r= new ManejoRonda();
+		   	ManejoRonda r= new ManejoRonda();
 		    
-		    this.menuPartidos(part);
 		    
 		    System.out.println("");
 		    System.out.println("---------");
@@ -22,7 +21,23 @@ public class Interfaz
 		    System.out.println("---------");
 		    System.out.println("");
 		    
-		    this.menuRondas(r.crearRondas(part), pron);
+		    //this.menuRondas(r.crearRondas(part), pron);
+		    ArrayList<Ronda> rondaTest = r.crearRondas(part);
+		    String nomAnterior = "";
+		    for (Pronostico prono : pron) {
+		    	
+		    	String nom = "";
+		    	nom = prono.getParticipante();
+		    	
+		    	if(nomAnterior.equals(nom)) {
+		    		continue;
+		    	} else {
+		    		nomAnterior = nom;
+		    		System.out.println("Puntos de " + nom +" : " + r.puntos(rondaTest, pron, nom));
+		    	}
+		    	
+			}
+		    this.menuPartidos(part);
 	   }
 	   
 	   public void menuPartidos(ArrayList<Partido> part)

@@ -11,9 +11,7 @@ public class Ronda
 	private int nro;
 	private ArrayList<Partido> partidos;
 	
-	
-	
-	public int puntos (ArrayList<Pronostico> prono)
+	public int puntos (ArrayList<Pronostico> prono, String nomParticipante)
 	{
 		int punto=0;
 		
@@ -22,7 +20,7 @@ public class Ronda
 			
 			for (Partido partido2 : partidos) 
 			{
-				if (pronostico.getPartido().equals(partido2)) 
+				if (pronostico.getPartido().equals(partido2) && pronostico.getParticipante().equals(nomParticipante)) 
 				{
 					ResultadoEnum res=partido2.resultado(pronostico.getEquipo());
 					punto+=pronostico.puntos(res);

@@ -32,7 +32,17 @@ public class ManejoRonda
 		}
 		//rondaF = (ArrayList<Ronda>) rondas.values();
 		ArrayList<Ronda> rondaF = new ArrayList<>(rondas.values());
+		
 		return rondaF;
 		
 	}
+	
+	public int puntos(ArrayList<Ronda> rondas, ArrayList<Pronostico> pronosticos, String nomParticipante) {
+		int puntosTotales = 0;
+		for (Ronda ronda : rondas) {
+			puntosTotales += ronda.puntos(pronosticos, nomParticipante);
+		}
+		return puntosTotales;
+	}
+	
 }
