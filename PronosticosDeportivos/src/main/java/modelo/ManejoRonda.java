@@ -10,37 +10,37 @@ public class ManejoRonda
 	/**
 	 * 
 	 */
-	public ArrayList<Ronda> crearRondas(ArrayList<Partido> partidoF)
+	public ArrayList<Ronda> crearRondas(ArrayList<Partido> partidoFinal)
 	{
-		Map<Integer, Ronda> rondas =new HashMap<>();
+		Map<Integer, Ronda> rondaHash =new HashMap<>();
 		//ArrayList<Ronda> rondaF= new ArrayList<Ronda>();
 		
-		for (Partido partido : partidoF) 
+		for (Partido partidoIndividual : partidoFinal) 
 		{
-				int nroRonda =partido.getNroRonda();
+				int nroRonda =partidoIndividual.getNroRonda();
 				
-				Ronda ronda=rondas.get(nroRonda);
+				Ronda ronda=rondaHash.get(nroRonda);
 				
 				if (ronda==null)
 				{
 					ronda = new Ronda();
 					ronda.setNro(nroRonda);
-					ronda.setPartidos(new ArrayList<>());
-					rondas.put(nroRonda, ronda);
+					ronda.setListaPartidos(new ArrayList<>());
+					rondaHash.put(nroRonda, ronda);
 				}
-				ronda.getPartidos().add(partido);
+				ronda.getListaPartidos().add(partidoIndividual);
 		}
 		//rondaF = (ArrayList<Ronda>) rondas.values();
-		ArrayList<Ronda> rondaF = new ArrayList<>(rondas.values());
+		ArrayList<Ronda> rondaFinal = new ArrayList<>(rondaHash.values());
 		
-		return rondaF;
+		return rondaFinal;
 		
 	}
 	
-	public int puntos(ArrayList<Ronda> rondas, ArrayList<Pronostico> pronosticos, String nomParticipante) {
+	public int puntos(ArrayList<Ronda> listaRondas, ArrayList<Pronostico> listaPronosticos, String nombreParticipante) {
 		int puntosTotales = 0;
-		for (Ronda ronda : rondas) {
-			puntosTotales += ronda.puntos(pronosticos, nomParticipante);
+		for (Ronda rondaIndividual : listaRondas) {
+			puntosTotales += rondaIndividual.puntos(listaPronosticos, nombreParticipante);
 		}
 		return puntosTotales;
 	}

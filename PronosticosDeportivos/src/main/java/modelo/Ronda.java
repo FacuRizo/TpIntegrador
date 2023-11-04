@@ -9,45 +9,44 @@ public class Ronda
 {
 
 	private int nro;
-	private ArrayList<Partido> partidos;
+	private ArrayList<Partido> listaPartidos;
 	
-	public int puntos (ArrayList<Pronostico> prono, String nomParticipante)
+	public int puntos (ArrayList<Pronostico> listaPronostico, String nomParticipante)
 	{
-		int punto=0;
+		int puntoFinal=0;
 		
-		for (Pronostico pronostico : prono) 
+		for (Pronostico pronosticoIndividual : listaPronostico) 
 		{
 			
-			for (Partido partido2 : partidos) 
+			for (Partido partidoIndividual : listaPartidos) 
 			{
-				if (pronostico.getPartido().equals(partido2) && pronostico.getParticipante().equals(nomParticipante)) 
+				if (pronosticoIndividual.getPartido().equals(partidoIndividual) && pronosticoIndividual.getParticipante().equals(nomParticipante)) 
 				{
-					ResultadoEnum res=partido2.resultado(pronostico.getEquipo());
-					punto+=pronostico.puntos(res);
+					ResultadoEnum res=partidoIndividual.resultado(pronosticoIndividual.getEquipo());
+					puntoFinal+=pronosticoIndividual.puntos(res);
 					
 				}
 			}
 			
 		}
-		return punto;
+		return puntoFinal;
 	}
 	// Esto aunque funciona probablemente no deberia estar aca
-	public int puntosInd (ArrayList<Pronostico> prono , Partido partido)
+	public int puntosInd (ArrayList<Pronostico> listoPronostico , Partido partido)
 	{
-		int punto=0;
-		for (Pronostico pronostico : prono) 
+		int puntoFinal=0;
+		for (Pronostico pronostico : listoPronostico) 
 		{			
 				if (pronostico.getPartido().equals(partido)) 
 				{
-					ResultadoEnum res=partido.resultado(pronostico.getEquipo());
-					punto=pronostico.puntos(res);
+					ResultadoEnum resultado=partido.resultado(pronostico.getEquipo());
+					puntoFinal=pronostico.puntos(resultado);
 					
 				}	
 			
 		}
-		return  punto;
+		return  puntoFinal;
 	}
-	//
 
 }
 

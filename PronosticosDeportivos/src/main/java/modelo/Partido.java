@@ -22,39 +22,39 @@ public class Partido
 	
 	public ResultadoEnum resultado (Equipo aEquipo)
 	{
-		ResultadoEnum res=null;
-		String eq = this.comparar();
+		ResultadoEnum resultadoFinal=null;
+		String equipo = this.comparar();
 		
-		if(eq.equals("Empate")) {
-			res= ResultadoEnum.Empate;
-		} else if(eq.equals(aEquipo.getNombre())) {
-			res= ResultadoEnum.Ganador;
+		if(equipo.equals("Empate")) {
+			resultadoFinal= ResultadoEnum.Empate;
+		} else if(equipo.equals(aEquipo.getNombre())) {
+			resultadoFinal= ResultadoEnum.Ganador;
 		}else {
-			res= ResultadoEnum.Perdedor;
+			resultadoFinal= ResultadoEnum.Perdedor;
 		}
 		//System.out.println(res);
-		return res;
+		return resultadoFinal;
 	}
 	
 	private String comparar ()
 	
 	{
 		
-		 String eqGanador = "";
+		 String equipoGanador = "";
 		
 			if (this.golesEquipo1>this.golesEquipo2)
 			{
-				eqGanador= this.equipo1.getNombre();
+				equipoGanador= this.equipo1.getNombre();
 			}
 			else if (this.golesEquipo1 == this.golesEquipo2)
 			{
-				eqGanador="Empate";
+				equipoGanador="Empate";
 			}
 			else if (this.golesEquipo1<this.golesEquipo2)
 			{
-				eqGanador=this.equipo2.getNombre();
+				equipoGanador=this.equipo2.getNombre();
 			}
-		return eqGanador;
+		return equipoGanador;
 		
 		
 	}

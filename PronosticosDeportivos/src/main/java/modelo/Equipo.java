@@ -8,7 +8,7 @@ public class Equipo
 {
 
 	private String nombre;
-	private String Descripcion;
+	private String descripcion;
 	
 
 	public boolean equals(Equipo equipo2) {

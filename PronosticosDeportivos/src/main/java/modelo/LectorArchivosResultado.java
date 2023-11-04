@@ -45,36 +45,40 @@ public class LectorArchivosResultado
 	        
 	}
 	
-	public ArrayList<Partido> agregarObjPartido (List<ArchivoResultado> partidos)
+	public ArrayList<Partido> agregarObjPartido (List<ArchivoResultado> listaPartidos)
 	{
-		ArrayList<Partido> partidosF=new ArrayList<Partido>(); 
-		for (ArchivoResultado partido: partidos)
+		ArrayList<Partido> partidosFinal=new ArrayList<Partido>(); 
+		for (ArchivoResultado partidoIndividual: listaPartidos)
 		{
 			
 			//boolean gana=Boolean.parseBoolean(pronostico1.getGana1());
-			int cantGoles1 = Integer.parseInt(partido.getCantGoles1());
-			int cantGoles2 = Integer.parseInt(partido.getCantGoles2());
+			int cantGoles1 = Integer.parseInt(partidoIndividual.getCantGoles1());
+			int cantGoles2 = Integer.parseInt(partidoIndividual.getCantGoles2());
 			
-			int ronda = Integer.parseInt(partido.getNroRonda());
+			int nroRonda = Integer.parseInt(partidoIndividual.getNroRonda());
 			
 			//inicializamos
 			Equipo equipo1 = new Equipo();
 			Equipo equipo2 = new Equipo();
-			Partido part=new Partido();
+			Partido partido=new Partido();
 			//seteamos nombre
-			equipo1.setNombre(partido.getEquipo1());
-			equipo2.setNombre(partido.getEquipo2());
+			equipo1.setNombre(partidoIndividual.getEquipo1());
+			equipo2.setNombre(partidoIndividual.getEquipo2());
+			
 			//setteamos equipos y goles
-			part.setEquipo1(equipo1);
-			part.setEquipo2(equipo2);
-			part.setGolesEquipo1(cantGoles1);
-			part.setGolesEquipo2(cantGoles2);
-			part.setNroRonda(ronda);
-			partidosF.add(part);		
+			partido.setEquipo1(equipo1);
+			partido.setEquipo2(equipo2);
+			
+			partido.setGolesEquipo1(cantGoles1);
+			partido.setGolesEquipo2(cantGoles2);
+			
+			partido.setNroRonda(nroRonda);
+			
+			partidosFinal.add(partido);		
 		
 			
 		}
-		return partidosF; // devolvemos lista de partidos
+		return partidosFinal; // devolvemos lista de partidos
 	}
 
 }

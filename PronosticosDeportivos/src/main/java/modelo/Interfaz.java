@@ -8,90 +8,105 @@ public class Interfaz
 {
 	 
 	 
-	   public void menu(ArrayList<Partido> part , ArrayList<Pronostico> pron,ArrayList<Ronda> ron )
+	   public void menu(ManejoRonda manejoRonda, ArrayList<Ronda> rondaOrdenada, ArrayList<Partido> listaPartido , ArrayList<Pronostico> listaPronostico,ArrayList<Ronda> listaRonda )
 	   {
-		   	ManejoRonda r= new ManejoRonda();
+		  //	ManejoRonda manejoRonda= new ManejoRonda();
+		  // 	ArrayList<Ronda> rondaOrdenada= new ArrayList<Ronda>();
+		   	
+		    rondaOrdenada=manejoRonda.crearRondas(listaPartido);
 		    
 		    
 		    System.out.println("");
 		    System.out.println("---------");
 		    System.out.println("");
-		    this.MenuPronostico(pron);
+		    this.MenuPronostico(listaPronostico);
+		    System.out.println("");
+		    System.out.println("---------");
+		    System.out.println("");	   
+		    this.menuPartidos(listaPartido);
 		    System.out.println("");
 		    System.out.println("---------");
 		    System.out.println("");
-		    
-		    //this.menuRondas(r.crearRondas(part), pron);
-		    ArrayList<Ronda> rondaTest = r.crearRondas(part);
+		    this.menuRondas(rondaOrdenada, listaPronostico);
+		    System.out.println("");
+		    System.out.println("---------");
+		    System.out.println("");
+		    this.menuPuntaje(manejoRonda, listaPartido, listaPronostico);
+	   }
+	   
+	   public void menuPuntaje(ManejoRonda manejoRonda, ArrayList<Partido> listaPartido,ArrayList<Pronostico> listaPronostico)
+	   {
+		   ArrayList<Ronda> listaRonda2 = manejoRonda.crearRondas(listaPartido);
 		    String nomAnterior = "";
-		    for (Pronostico prono : pron) {
+		    for (Pronostico pronosticoIndividual : listaPronostico) {
 		    	
 		    	String nom = "";
-		    	nom = prono.getParticipante();
+		    	nom = pronosticoIndividual.getParticipante();
 		    	
 		    	if(nomAnterior.equals(nom)) {
 		    		continue;
 		    	} else {
 		    		nomAnterior = nom;
-		    		System.out.println("Puntos de " + nom +" : " + r.puntos(rondaTest, pron, nom));
+		    		System.out.println("Puntos de " + nom +" : " + manejoRonda.puntos(listaRonda2, listaPronostico, nom));
 		    	}
 		    	
 			}
-		    this.menuPartidos(part);
 	   }
 	   
-	   public void menuPartidos(ArrayList<Partido> part)
+	   
+	   
+	   public void menuPartidos(ArrayList<Partido> listaPartido)
 	   {
 		    
 	        System.out.printf("%-15s%-8s%-8s%-15s\n", "Equipo 1", "Goles 1", "Goles 2", "Equipo 2");
 	        
-	        for (Partido partido : part)
+	        for (Partido partidoIndividual : listaPartido)
 	        {
-	            String equipo1 = partido.getEquipo1().getNombre();
-	            int goles1 = partido.getGolesEquipo1();
-	            int goles2 = partido.getGolesEquipo2();
-	            String equipo2 =  partido.getEquipo2().getNombre();
+	            String equipo1 = partidoIndividual.getEquipo1().getNombre();
+	            int goles1 = partidoIndividual.getGolesEquipo1();
+	            int goles2 = partidoIndividual.getGolesEquipo2();
+	            String equipo2 =  partidoIndividual.getEquipo2().getNombre();
 
 
 	            System.out.printf("%-15s%-8d%-8d%-15s\n", equipo1, goles1, goles2, equipo2);
 	        }
 	   }
 	   
-	   public void MenuPronostico (ArrayList<Pronostico> pronos)
+	   public void MenuPronostico (ArrayList<Pronostico> listaPronostico)
 	   {
 		   System.out.printf("%-35s%-27s%-27s%-27s\n", "Partido", "Equipo Seleccionado", "Resultado", "Participante");
 
-	        for (Pronostico pronostico : pronos)
+	        for (Pronostico pronosticoIndividual : listaPronostico)
 	        {
-	            String part1 = pronostico.getPartido().getEquipo1().getNombre();
-	            String part2 = pronostico.getPartido().getEquipo2().getNombre();
-	            String eq = pronostico.getEquipo().getNombre();
-	            String persona =pronostico.getParticipante();
-	            ResultadoEnum res =pronostico.getResultado();           
+	            String part1Nombre = pronosticoIndividual.getPartido().getEquipo1().getNombre();
+	            String part2Nombre = pronosticoIndividual.getPartido().getEquipo2().getNombre();
+	            String equipoNombre = pronosticoIndividual.getEquipo().getNombre();
+	            String persona =pronosticoIndividual.getParticipante();
+	            ResultadoEnum res =pronosticoIndividual.getResultado();           
 	            
 
 
-	            System.out.printf("%-35s%-27s%-27s%-27s\n", part1+ " vs " +part2 , eq, res , persona);
+	            System.out.printf("%-35s%-27s%-27s%-27s\n", part1Nombre+ " vs " + part2Nombre , equipoNombre, res , persona);
 	        }
 	   }
 	   
-	   public void menuRondas(ArrayList<Ronda> ron, ArrayList<Pronostico> pronos)
+	   public void menuRondas(ArrayList<Ronda> listaRonda, ArrayList<Pronostico> listaPronostico)
 	   {
 		   System.out.printf("%-35s%-27s\n", "Partido", "Numero");
 		   
-		   for (Ronda ronda : ron) 
+		   for (Ronda rondaIndividual : listaRonda) 
 		   {
 			 
-			   for (Partido partido : ronda.getPartidos()) 
+			   for (Partido partidoIndividual : rondaIndividual.getListaPartidos()) 
 			   {
-				   String part1= partido.getEquipo1().getNombre();
-				   String part2= partido.getEquipo2().getNombre();
+				   String partido1Nombre= partidoIndividual.getEquipo1().getNombre();
+				   String part2Nombre= partidoIndividual.getEquipo2().getNombre();
 				   
-				   String part=part1 + " vs "+ part2;
+				   String partidoVS= partido1Nombre + " vs "+ part2Nombre;
 			   
-			   int nro=(ronda.getNro());
-			   int pto=ronda.puntosInd(pronos, partido);
-			   System.out.printf("%-35s%-27s\n", part, nro);
+			   int nro=(rondaIndividual.getNro());
+			   int pto=rondaIndividual.puntosInd(listaPronostico, partidoIndividual);
+			   System.out.printf("%-35s%-27s\n", partidoVS, nro);
 			   }
 			  // int ptoTotal=ronda.puntos(pronos);
 			  // System.out.println("Total :"+ Integer.toString(ptoTotal) );

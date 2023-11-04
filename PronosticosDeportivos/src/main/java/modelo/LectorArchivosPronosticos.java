@@ -44,16 +44,17 @@ public class LectorArchivosPronosticos
 	        
 	}
 	
-	public  ArrayList<Pronostico> agregarObjPronostico(List<ArchivoPronostico> pronosticos)
+	public  ArrayList<Pronostico> agregarObjPronostico(List<ArchivoPronostico> Listapronosticos)
 	{
-		ArrayList<Pronostico> pronosticoF=new ArrayList<Pronostico>(); 
-		for (ArchivoPronostico pronostico1: pronosticos)
+		ArrayList<Pronostico> pronosticoFinal=new ArrayList<Pronostico>(); 
+		
+		for (ArchivoPronostico pronosticoIndividual: Listapronosticos)
 		{
 			// obtener string true or false  de los sig 3 valores y convertirlos a  boolean
 			
-			boolean gana=Boolean.parseBoolean(pronostico1.getGana1()); 
-			boolean gana2=Boolean.parseBoolean(pronostico1.getGana2());
-			boolean empata=Boolean.parseBoolean(pronostico1.getEmpata());
+			boolean gana=Boolean.parseBoolean(pronosticoIndividual.getGana1()); 
+			boolean gana2=Boolean.parseBoolean(pronosticoIndividual.getGana2());
+			boolean empata=Boolean.parseBoolean(pronosticoIndividual.getEmpata());
 			
 			
 			// inicializar equipo, partido y pronostico
@@ -62,46 +63,46 @@ public class LectorArchivosPronosticos
 			
 			Equipo equipo2 = new Equipo();
 			
-			Partido part=new Partido();	
+			Partido partido=new Partido();	
 			
-			Pronostico pron= new Pronostico();
+			Pronostico pronostico= new Pronostico();
 			
 		//	Boolean.parseBoolean(pronostico.getEmpata());
 			
 			//del archivo de pronosticos saco el nombre del equipo y lo agrego al obj equipo correspondiente
-			equipo1.setNombre(pronostico1.getEquipo1());
-			part.setEquipo1(equipo1);
+			equipo1.setNombre(pronosticoIndividual.getEquipo1());
+			partido.setEquipo1(equipo1);
 			
-			equipo2.setNombre(pronostico1.getEquipo2());
-			part.setEquipo2(equipo2);
+			equipo2.setNombre(pronosticoIndividual.getEquipo2());
+			partido.setEquipo2(equipo2);
 			
 			
 			//settear partido
-			pron.setPartido(part);
-			pron.setParticipante(pronostico1.getParticipante());
+			pronostico.setPartido(partido);
+			pronostico.setParticipante(pronosticoIndividual.getParticipante());
 		//	ResultadoEnum resultado = part.resultado(equipo1);
 			
 			// aunque funciona es necesario setteearlo correctamente 
 			
 			if (gana) // si gana1 es true entonces el equipo seleccinado por la persona es el uno y el resultado es Ganador
 			{
-				pron.setEquipo(equipo1);
-				pron.setResultado(ResultadoEnum.Ganador);
+				pronostico.setEquipo(equipo1);
+				pronostico.setResultado(ResultadoEnum.Ganador);
 				
 			}
 			else if (empata) //si empata es true entonces el equipo seleccinado por la persona no importa y el resultado es empate
 			{
-				pron.setEquipo(equipo1);
+				pronostico.setEquipo(equipo1);
 				//pron.setEquipo(equipo2);
-				pron.setResultado(ResultadoEnum.Empate);
+				pronostico.setResultado(ResultadoEnum.Empate);
 			}
 			else if (gana2) //
 			{
-				pron.setEquipo(equipo2);
-				pron.setResultado(ResultadoEnum.Ganador);
+				pronostico.setEquipo(equipo2);
+				pronostico.setResultado(ResultadoEnum.Ganador);
 			}
-			pronosticoF.add(pron);	
+			pronosticoFinal.add(pronostico);	
 		}
-		return pronosticoF; // devuelve lista de pronosticos
+		return pronosticoFinal; // devuelve lista de pronosticos
 	}
 }
