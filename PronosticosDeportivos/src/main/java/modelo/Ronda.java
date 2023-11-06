@@ -32,6 +32,7 @@ public class Ronda
 		return puntoFinal;
 	}
 	// Esto aunque funciona probablemente no deberia estar aca
+	/*
 	public int puntosInd (ArrayList<Pronostico> listoPronostico , Partido partido)
 	{
 		int puntoFinal=0;
@@ -47,7 +48,7 @@ public class Ronda
 		}
 		return  puntoFinal;
 	}
-
+	 */
 }
 
 	

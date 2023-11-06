@@ -36,6 +36,9 @@ public class ManejoRonda
 		
 	}
 	
+	// Calculo del Puntaje sin HashMap
+	
+	/*
 	public int puntos1(ArrayList<Ronda> listaRondas, ArrayList<Pronostico> listaPronosticos, String nombreParticipante) {
 		int puntosTotales = 0;
 		for (Ronda rondaIndividual : listaRondas) {
@@ -43,7 +46,7 @@ public class ManejoRonda
 		}
 		return puntosTotales;
 	}
-	
+	*/
 	
 	public Map<String, Integer> puntos2 (Map<String, ArrayList<Pronostico>> pronosticoHash, ArrayList<Ronda> listaRonda)
 	{
@@ -85,6 +88,10 @@ public class ManejoRonda
 		
 		}
 		return pronosticoHash;
+		
+	}
+	
+	public void ganador(Map<String, Integer> puntosPorParticipante) {
 		
 	}
 	

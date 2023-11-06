@@ -31,17 +31,15 @@ public class Interfaz
 		    System.out.println("");
 		    this.menuRondas(rondaOrdenada, listaPronostico);
 		    System.out.println("");
-		    System.out.println("---------");
-		    System.out.println("");
-		    this.menuPuntaje(manejoRonda,rondaOrdenada, listaPartido, listaPronostico);
+		    /*this.menuPuntaje(manejoRonda,rondaOrdenada, listaPartido, listaPronostico);
 		    System.out.println("");
 		    System.out.println("---------");
-		    System.out.println("");
-		    this.menuTest(manejoRonda, listaPronostico);
+		    System.out.println("");*/
+		    /*this.menuTest(manejoRonda, listaPronostico);
 		    System.out.println("");
 		    System.out.println("---------");
 		    System.out.println("");
-
+		    */
 		    this.menuPuntaje2(manejoRonda,rondaOrdenada, listaPronostico);
 		    
 	   }
@@ -56,6 +54,10 @@ public class Interfaz
 			}
 			
 	   }
+	   
+	   // Menu del Puntaje sin HashMap
+	   
+	   /*
 	   public void menuPuntaje(ManejoRonda manejoRonda,ArrayList<Ronda> rondaOrdenada, ArrayList<Partido> listaPartido,ArrayList<Pronostico> listaPronostico)
 	   {
 		  // ArrayList<Ronda> listaRonda2 = manejoRonda.crearRondas(listaPartido);
@@ -77,17 +79,20 @@ public class Interfaz
 		    	}
 		    	
 			}
-	   }
+	   }*/
+	   
 	   public void menuPuntaje2(ManejoRonda manejoRonda,ArrayList<Ronda> rondaOrdenada, ArrayList<Pronostico> listaPronostico)
 	   {
 		   Map<String, ArrayList<Pronostico>> pronosticoHash = manejoRonda.listaPronosticoHash(listaPronostico);	
 
 		   Map<String, Integer> puntosPorParticipante = manejoRonda.puntos2(pronosticoHash, rondaOrdenada);
-
+		   
+		   System.out.println("PUNTAJES TOTALES: \n");
+		   
 		    for (String nombre : puntosPorParticipante.keySet()) 
 		    {
 		        int puntosParticipante = puntosPorParticipante.get(nombre);
-		        System.out.println("Hash Puntos de " + nombre + " : " + puntosParticipante);
+		        System.out.println(nombre + ": " + puntosParticipante);
 		    }
 
 		   
@@ -95,7 +100,7 @@ public class Interfaz
 	   
 	   public void menuPartidos(ArrayList<Partido> listaPartido)
 	   {
-		    
+		    System.out.println("PARTIDOS: \n");
 	        System.out.printf("%-15s%-8s%-8s%-15s\n", "Equipo 1", "Goles 1", "Goles 2", "Equipo 2");
 	        
 	        for (Partido partidoIndividual : listaPartido)
@@ -112,6 +117,7 @@ public class Interfaz
 	   
 	   public void MenuPronostico (ArrayList<Pronostico> listaPronostico)
 	   {
+		   System.out.println("PRONOSTICOS: \n");
 		   System.out.printf("%-35s%-27s%-27s%-27s\n", "Partido", "Equipo Seleccionado", "Resultado", "Participante");
 
 	        for (Pronostico pronosticoIndividual : listaPronostico)
@@ -130,11 +136,16 @@ public class Interfaz
 	   
 	   public void menuRondas(ArrayList<Ronda> listaRonda, ArrayList<Pronostico> listaPronostico)
 	   {
-		   System.out.printf("%-35s%-27s\n", "Partido", "Numero");
+		   System.out.println("RONDAS:");
+		   // System.out.printf("%-35s\n", "Partido");
+		   
+		   int cont = 0;
 		   
 		   for (Ronda rondaIndividual : listaRonda) 
 		   {
-			 
+			   cont++;
+			   System.out.println("\n Ronda " + cont + ":");
+			   
 			   for (Partido partidoIndividual : rondaIndividual.getListaPartidos()) 
 			   {
 				   String partido1Nombre= partidoIndividual.getEquipo1().getNombre();
@@ -142,18 +153,15 @@ public class Interfaz
 				   
 				   String partidoVS= partido1Nombre + " vs "+ part2Nombre;
 			   
-			   int nro=(rondaIndividual.getNro());
-			   //int pto=rondaIndividual.puntosInd(listaPronostico, partidoIndividual);
-			   System.out.printf("%-35s%-27s\n", partidoVS, nro);
+				   //int nro=(rondaIndividual.getNro());
+				   //int pto=rondaIndividual.puntosInd(listaPronostico, partidoIndividual);
+				   System.out.printf("%-35s\n", partidoVS);
 			   }
 			  // int ptoTotal=ronda.puntos(pronos);
 			  // System.out.println("Total :"+ Integer.toString(ptoTotal) );
+			   System.out.println("---------");
 		   }
-		}		   
-			
-	  // no lee total correctamente
-
-		   
+		}		    
 }
 	   
  

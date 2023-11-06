@@ -1,5 +1,6 @@
 package modelo;
 
+import java.awt.print.PrinterException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -50,17 +51,24 @@ public class LectorArchivosResultado
 		ArrayList<Partido> partidosFinal=new ArrayList<Partido>(); 
 		for (ArchivoResultado partidoIndividual: listaPartidos)
 		{
+			int cantGoles1 = 0;
+			int cantGoles2 = 0;
+			
+			try {
+				cantGoles1 = Integer.parseInt(partidoIndividual.getCantGoles1());
+				cantGoles2 = Integer.parseInt(partidoIndividual.getCantGoles2());
+				
+			} catch (Exception e) {
+				System.err.println("Error en los goles ingresados. \n" + e);
+			}
 			
 			//boolean gana=Boolean.parseBoolean(pronostico1.getGana1());
-			int cantGoles1 = Integer.parseInt(partidoIndividual.getCantGoles1());
-			int cantGoles2 = Integer.parseInt(partidoIndividual.getCantGoles2());
-			
 			int nroRonda = Integer.parseInt(partidoIndividual.getNroRonda());
 			
 			//inicializamos
 			Equipo equipo1 = new Equipo();
 			Equipo equipo2 = new Equipo();
-			Partido partido=new Partido();
+			Partido partido = new Partido();
 			//seteamos nombre
 			equipo1.setNombre(partidoIndividual.getEquipo1());
 			equipo2.setNombre(partidoIndividual.getEquipo2());
