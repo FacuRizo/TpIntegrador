@@ -2,6 +2,8 @@ package modelo;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Interfaz 
 
@@ -13,7 +15,7 @@ public class Interfaz
 		  //	ManejoRonda manejoRonda= new ManejoRonda();
 		  // 	ArrayList<Ronda> rondaOrdenada= new ArrayList<Ronda>();
 		   	
-		    rondaOrdenada=manejoRonda.crearRondas(listaPartido);
+		   // rondaOrdenada=manejoRonda.crearRondas(listaPartido);
 		    
 		    
 		    System.out.println("");
@@ -31,13 +33,36 @@ public class Interfaz
 		    System.out.println("");
 		    System.out.println("---------");
 		    System.out.println("");
-		    this.menuPuntaje(manejoRonda, listaPartido, listaPronostico);
+		    this.menuPuntaje(manejoRonda,rondaOrdenada, listaPartido, listaPronostico);
+		    System.out.println("");
+		    System.out.println("---------");
+		    System.out.println("");
+		    this.menuTest(manejoRonda, listaPronostico);
+		    System.out.println("");
+		    System.out.println("---------");
+		    System.out.println("");
+
+		    this.menuPuntaje2(manejoRonda,rondaOrdenada, listaPronostico);
+		    
 	   }
 	   
-	   public void menuPuntaje(ManejoRonda manejoRonda, ArrayList<Partido> listaPartido,ArrayList<Pronostico> listaPronostico)
+	   public void menuTest(ManejoRonda manejoRonda,ArrayList<Pronostico> listaPronostico)
 	   {
-		   ArrayList<Ronda> listaRonda2 = manejoRonda.crearRondas(listaPartido);
+		   Map<String, ArrayList<Pronostico> > pronosticoHash =new HashMap<>();
+		    pronosticoHash= manejoRonda.listaPronosticoHash(listaPronostico);
+		    for (String i : pronosticoHash.keySet())
+		    {
+		    	System.out.println("key: " + i + " value: " + pronosticoHash.get(i));
+			}
+			
+	   }
+	   public void menuPuntaje(ManejoRonda manejoRonda,ArrayList<Ronda> rondaOrdenada, ArrayList<Partido> listaPartido,ArrayList<Pronostico> listaPronostico)
+	   {
+		  // ArrayList<Ronda> listaRonda2 = manejoRonda.crearRondas(listaPartido);
+		    Map<String, ArrayList<Pronostico> > pronosticoHash =new HashMap<>();
+		    pronosticoHash= manejoRonda.listaPronosticoHash(listaPronostico);
 		    String nomAnterior = "";
+		    
 		    for (Pronostico pronosticoIndividual : listaPronostico) {
 		    	
 		    	String nom = "";
@@ -47,13 +72,26 @@ public class Interfaz
 		    		continue;
 		    	} else {
 		    		nomAnterior = nom;
-		    		System.out.println("Puntos de " + nom +" : " + manejoRonda.puntos(listaRonda2, listaPronostico, nom));
+		    		System.out.println("Puntos de " + nom +" : " + manejoRonda.puntos1(rondaOrdenada, listaPronostico, nom));
+		    	//	System.out.println(" Hash Puntos de " + nom +" : " + manejoRonda.puntos2(pronosticoHash, rondaOrdenada));
 		    	}
 		    	
 			}
 	   }
-	   
-	   
+	   public void menuPuntaje2(ManejoRonda manejoRonda,ArrayList<Ronda> rondaOrdenada, ArrayList<Pronostico> listaPronostico)
+	   {
+		   Map<String, ArrayList<Pronostico>> pronosticoHash = manejoRonda.listaPronosticoHash(listaPronostico);	
+
+		   Map<String, Integer> puntosPorParticipante = manejoRonda.puntos2(pronosticoHash, rondaOrdenada);
+
+		    for (String nombre : puntosPorParticipante.keySet()) 
+		    {
+		        int puntosParticipante = puntosPorParticipante.get(nombre);
+		        System.out.println("Hash Puntos de " + nombre + " : " + puntosParticipante);
+		    }
+
+		   
+	   }
 	   
 	   public void menuPartidos(ArrayList<Partido> listaPartido)
 	   {

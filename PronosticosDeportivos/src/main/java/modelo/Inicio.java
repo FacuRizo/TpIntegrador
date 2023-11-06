@@ -12,11 +12,13 @@ public class Inicio
 		
 		ArrayList<Partido> partidosFinal=new ArrayList<Partido>(); 
 		ArrayList<Pronostico> pronosticoFinal=new ArrayList<Pronostico>(); 
-		ArrayList<Ronda> rondaFinal=new ArrayList<Ronda>(); 
-		ManejoRonda manejoRonda= new ManejoRonda();
+		ArrayList<Ronda> rondaFinal=new ArrayList<Ronda>(); 		
 		ArrayList<Ronda> rondaOrdenada= new ArrayList<Ronda>();
 		
-		Interfaz menu= new Interfaz();
+		
+		Interfaz interfaz= new Interfaz();
+		ManejoRonda manejoRonda= new ManejoRonda();
+		
 		try
 		{
 			
@@ -30,11 +32,9 @@ public class Inicio
 			List<ArchivoPronostico> pronosticos = lectorPronostico.LineasArchivoPronostico;
 			pronosticoFinal=lectorPronostico.agregarObjPronostico(pronosticos);
 			
-		
-			//System.out.println(ronda1.puntos(pronosticoF));
+			rondaOrdenada=manejoRonda.crearRondas(partidosFinal);
 			
-			//menu.menu(partidosF, pronosticoF);
-			menu.menu(manejoRonda,rondaOrdenada,partidosFinal, pronosticoFinal,rondaFinal);
+			interfaz.menu(manejoRonda,rondaOrdenada,partidosFinal, pronosticoFinal,rondaFinal);
 
 		}
 		catch (NoSuchElementException e)
