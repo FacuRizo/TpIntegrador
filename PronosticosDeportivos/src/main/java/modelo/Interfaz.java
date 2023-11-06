@@ -59,8 +59,8 @@ public class Interfaz
 	   public void menuPuntaje(ManejoRonda manejoRonda,ArrayList<Ronda> rondaOrdenada, ArrayList<Partido> listaPartido,ArrayList<Pronostico> listaPronostico)
 	   {
 		  // ArrayList<Ronda> listaRonda2 = manejoRonda.crearRondas(listaPartido);
-		    Map<String, ArrayList<Pronostico> > pronosticoHash =new HashMap<>();
-		    pronosticoHash= manejoRonda.listaPronosticoHash(listaPronostico);
+		   // Map<String, ArrayList<Pronostico> > pronosticoHash =new HashMap<>();
+		   // pronosticoHash= manejoRonda.listaPronosticoHash(listaPronostico);
 		    String nomAnterior = "";
 		    
 		    for (Pronostico pronosticoIndividual : listaPronostico) {
@@ -143,7 +143,7 @@ public class Interfaz
 				   String partidoVS= partido1Nombre + " vs "+ part2Nombre;
 			   
 			   int nro=(rondaIndividual.getNro());
-			   int pto=rondaIndividual.puntosInd(listaPronostico, partidoIndividual);
+			   //int pto=rondaIndividual.puntosInd(listaPronostico, partidoIndividual);
 			   System.out.printf("%-35s%-27s\n", partidoVS, nro);
 			   }
 			  // int ptoTotal=ronda.puntos(pronos);
