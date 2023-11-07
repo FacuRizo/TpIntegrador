@@ -34,12 +34,32 @@ public class LectorArchivosPronosticos
 	                    .withType(ArchivoPronostico.class)
 	                    .build()
 	                    .parse();
+			  	
+			    for (ArchivoPronostico pronostico : listPronostico) 
+			    {
+		            try 
+		            {
+		                // Check if the number of columns in the current row is not equal to 6
+		                if (contarColumnas(pronostico) != 6) 
+		                {
+		                    throw new ColumnasIncorrectasException("EL CSV no tiene 6 columnas");
+		                }
+		            } 	
+		            catch (ColumnasIncorrectasException e) 
+		            {
+		            	System.err.println(e.getMessage());
+		            }
+		            
+		                
 
-	        } catch (IOException e) 
-		  {
-	        e.printStackTrace();
-	        
-		  }
+			    } 
+		    }
+		  	catch (IOException e) 
+		    {
+		        e.printStackTrace();
+		    } 
+
+	       
 		  this.LineasArchivoPronostico=listPronostico;
 	        
 	}
@@ -51,58 +71,93 @@ public class LectorArchivosPronosticos
 		for (ArchivoPronostico pronosticoIndividual: Listapronosticos)
 		{
 			// obtener string true or false  de los sig 3 valores y convertirlos a  boolean
-			
-			boolean gana=Boolean.parseBoolean(pronosticoIndividual.getGana1()); 
-			boolean gana2=Boolean.parseBoolean(pronosticoIndividual.getGana2());
-			boolean empata=Boolean.parseBoolean(pronosticoIndividual.getEmpata());
-			
-			
-			// inicializar equipo, partido y pronostico
-			
-			Equipo equipo1 = new Equipo();
-			
-			Equipo equipo2 = new Equipo();
-			
-			Partido partido=new Partido();	
-			
-			Pronostico pronostico= new Pronostico();
-			
-		//	Boolean.parseBoolean(pronostico.getEmpata());
-			
-			//del archivo de pronosticos saco el nombre del equipo y lo agrego al obj equipo correspondiente
-			equipo1.setNombre(pronosticoIndividual.getEquipo1());
-			partido.setEquipo1(equipo1);
-			
-			equipo2.setNombre(pronosticoIndividual.getEquipo2());
-			partido.setEquipo2(equipo2);
-			
-			
-			//settear partido
-			pronostico.setPartido(partido);
-			pronostico.setParticipante(pronosticoIndividual.getParticipante());
-		//	ResultadoEnum resultado = part.resultado(equipo1);
-			
-			// aunque funciona es necesario setteearlo correctamente 
-			
-			if (gana) // si gana1 es true entonces el equipo seleccinado por la persona es el uno y el resultado es Ganador
+			try 
 			{
-				pronostico.setEquipo(equipo1);
-				pronostico.setResultado(ResultadoEnum.Ganador);
 				
-			}
-			else if (empata) //si empata es true entonces el equipo seleccinado por la persona no importa y el resultado es empate
+				boolean gana=parseValorBoolean(pronosticoIndividual.getGana1());
+				boolean gana2=parseValorBoolean(pronosticoIndividual.getGana2());
+				boolean empata=parseValorBoolean(pronosticoIndividual.getEmpata());
+				
+				
+				// inicializar equipo, partido y pronostico
+				
+				Equipo equipo1 = new Equipo();
+				
+				Equipo equipo2 = new Equipo();
+				
+				Partido partido=new Partido();	
+				
+				Pronostico pronostico= new Pronostico();
+				
+			//	Boolean.parseBoolean(pronostico.getEmpata());
+				
+				//del archivo de pronosticos saco el nombre del equipo y lo agrego al obj equipo correspondiente
+				equipo1.setNombre(pronosticoIndividual.getEquipo1());
+				partido.setEquipo1(equipo1);
+				
+				equipo2.setNombre(pronosticoIndividual.getEquipo2());
+				partido.setEquipo2(equipo2);
+				
+				
+				//settear partido
+				pronostico.setPartido(partido);
+				pronostico.setParticipante(pronosticoIndividual.getParticipante());
+			//	ResultadoEnum resultado = part.resultado(equipo1);
+						
+				
+				if (gana) // si gana1 es true entonces el equipo seleccinado por la persona es el uno y el resultado es Ganador
+				{
+					pronostico.setEquipo(equipo1);
+					pronostico.setResultado(ResultadoEnum.Ganador);
+					
+				}
+				else if (empata) //si empata es true entonces el equipo seleccinado por la persona no importa y el resultado es empate
+				{
+					pronostico.setEquipo(equipo1);
+					//pron.setEquipo(equipo2);
+					pronostico.setResultado(ResultadoEnum.Empate);
+				}
+				else if (gana2) //
+				{
+					pronostico.setEquipo(equipo2);
+					pronostico.setResultado(ResultadoEnum.Ganador);
+				}
+				pronosticoFinal.add(pronostico);	
+			}		
+			
+			catch (NullPointerException e) 
 			{
-				pronostico.setEquipo(equipo1);
-				//pron.setEquipo(equipo2);
-				pronostico.setResultado(ResultadoEnum.Empate);
+				System.err.println("Uno de los argumentos es nulo. \n"+ e.getMessage());
 			}
-			else if (gana2) //
+			catch (NoBooleanException e) 
 			{
-				pronostico.setEquipo(equipo2);
-				pronostico.setResultado(ResultadoEnum.Ganador);
+			    System.err.println("Uno de los argumentos no son booleanos " + e.getMessage());
 			}
-			pronosticoFinal.add(pronostico);	
 		}
 		return pronosticoFinal; // devuelve lista de pronosticos
 	}
+	
+	private static boolean parseValorBoolean(String booleano) throws NoBooleanException 
+	{
+	    if (!booleano.equalsIgnoreCase("true") && !booleano.equalsIgnoreCase("false"))
+	    {
+	        throw new NoBooleanException("Invalid boolean value: " + booleano);
+	    }
+	    return Boolean.parseBoolean(booleano);
+	}
+	
+	private static int contarColumnas(ArchivoPronostico pronostico)
+	{
+		int contador=0;
+		 if (pronostico.getParticipante() != null) contador++;
+		    if (pronostico.getEquipo1() != null) contador++;
+		    if (pronostico.getGana1() != null) contador++;
+		    if (pronostico.getEmpata() != null) contador++;
+		    if (pronostico.getGana2() != null) contador++;
+		    if (pronostico.getEquipo2() != null) contador++;
+
+		    return contador;
+	}
+	
+	
 }

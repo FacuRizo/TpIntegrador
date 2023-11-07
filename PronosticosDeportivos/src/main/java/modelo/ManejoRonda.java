@@ -9,7 +9,7 @@ public class ManejoRonda
 
 {
 
-	public ArrayList<Ronda> crearRondas(ArrayList<Partido> partidoFinal)
+	public static  ArrayList<Ronda> crearRondas(ArrayList<Partido> partidoFinal)
 	{
 		Map<Integer, Ronda> rondaHash =new HashMap<>();
 	
@@ -48,7 +48,7 @@ public class ManejoRonda
 	}
 	*/
 	
-	public Map<String, Integer> puntos2 (Map<String, ArrayList<Pronostico>> pronosticoHash, ArrayList<Ronda> listaRonda)
+	public static Map<String, Integer> puntos2 (Map<String, ArrayList<Pronostico>> pronosticoHash, ArrayList<Ronda> listaRonda)
 	{
 		 Map<String, Integer> puntosPorParticipante = new HashMap<>();
 
@@ -68,8 +68,7 @@ public class ManejoRonda
 	
 	}
 	
-	// Deberia estar en pronostico?
-	public Map<String, ArrayList<Pronostico>> listaPronosticoHash (ArrayList<Pronostico> partidoFinal)
+	public static Map<String, ArrayList<Pronostico>> listaPronosticoHash (ArrayList<Pronostico> partidoFinal)
 	{
 		Map<String, ArrayList<Pronostico> > pronosticoHash =new HashMap<>();
 		for (Pronostico pronosticoIndividual : partidoFinal) 
@@ -91,8 +90,6 @@ public class ManejoRonda
 		
 	}
 	
-	public void ganador(Map<String, Integer> puntosPorParticipante) {
-		
-	}
+	
 	
 }

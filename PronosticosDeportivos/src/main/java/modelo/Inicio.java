@@ -1,23 +1,24 @@
 package modelo;
 
-import java.util.ArrayList;
-
-import java.util.List;
-import java.util.NoSuchElementException;
 
 public class Inicio 
 {
 	public static void main(String[] args) 
 	{
-		
-		ArrayList<Partido> partidosFinal=new ArrayList<Partido>(); 
+		SistemaPronostico sistema = new SistemaPronostico();
+        sistema.sistemaInicio(args[0], args[1]);
+	}
+}
+        
+        
+		/*ArrayList<Partido> partidosFinal=new ArrayList<Partido>(); 
 		ArrayList<Pronostico> pronosticoFinal=new ArrayList<Pronostico>(); 
 		ArrayList<Ronda> rondaFinal=new ArrayList<Ronda>(); 		
 		ArrayList<Ronda> rondaOrdenada= new ArrayList<Ronda>();
 		
 		
 		Interfaz interfaz= new Interfaz();
-		ManejoRonda manejoRonda= new ManejoRonda();
+		//ManejoRonda manejoRonda= new ManejoRonda();
 		
 		try
 		{
@@ -32,18 +33,13 @@ public class Inicio
 			List<ArchivoPronostico> pronosticos = lectorPronostico.LineasArchivoPronostico;
 			pronosticoFinal=lectorPronostico.agregarObjPronostico(pronosticos);
 			
-			rondaOrdenada=manejoRonda.crearRondas(partidosFinal);
+			rondaOrdenada=ManejoRonda.crearRondas(partidosFinal);
 			
-			interfaz.menu(manejoRonda,rondaOrdenada,partidosFinal, pronosticoFinal,rondaFinal);
+			interfaz.menu(rondaOrdenada,partidosFinal, pronosticoFinal,rondaFinal);
 
 		}
 		catch (NoSuchElementException e)
 		{
 			System.err.println("Se esperaban 2 argumentos");
-		}
-	}
-	
-	
-	
-	
-}
+		}*/
+

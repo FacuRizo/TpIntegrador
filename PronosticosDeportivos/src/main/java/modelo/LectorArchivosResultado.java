@@ -1,6 +1,5 @@
 package modelo;
 
-import java.awt.print.PrinterException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,11 +36,31 @@ public class LectorArchivosResultado
 	                    .build()
 	                    .parse();
 
-	        } catch (IOException e) 
-		   {
+			    for (ArchivoResultado resultado : listResultado) 
+			    {
+		            try 
+		            {
+		                // Check if the number of columns in the current row is not equal to 6
+		                if (contarColumnas(resultado) != 5) 
+		                {
+		                    throw new ColumnasIncorrectasException("EL CSV no tiene 6 columnas");
+		                }
+		            } 	
+		            catch (ColumnasIncorrectasException e) 
+		            {
+		            	System.err.println(e.getMessage());
+		            }
+		            
+		                
+
+			    } 
+
+	        } 
+		  	catch (IOException e) 
+		    {
 	        e.printStackTrace();
 	        
-		   }
+		    }
 		  this.LineasArchivoResultado=listResultado;
 	        
 	}
@@ -58,9 +77,8 @@ public class LectorArchivosResultado
 				cantGoles1 = Integer.parseInt(partidoIndividual.getCantGoles1());
 				cantGoles2 = Integer.parseInt(partidoIndividual.getCantGoles2());
 				
-			} catch (Exception e) {
-				System.err.println("Error en los goles ingresados. \n" + e);
-			}
+			
+			
 			
 			//boolean gana=Boolean.parseBoolean(pronostico1.getGana1());
 			int nroRonda = Integer.parseInt(partidoIndividual.getNroRonda());
@@ -84,10 +102,28 @@ public class LectorArchivosResultado
 			
 			partidosFinal.add(partido);		
 		
-			
+			} 
+			catch (NumberFormatException e) 
+			{
+			System.err.println("Error en los goles ingresados, uno o ambos no son numeros enteros. \n" + e.getMessage());
+			}
+			catch (NullPointerException e) {
+				System.err.println("Uno de los argumentos es nulo. \n"+ e.getMessage());
+			}
 		}
 		return partidosFinal; // devolvemos lista de partidos
 	}
+	
+	private  static int contarColumnas(ArchivoResultado resultado)
+	{
+		int contador=0;
+		 if (resultado.getCantGoles1() != null) contador++;
+		    if (resultado.getEquipo1() != null) contador++;
+		    if (resultado.getCantGoles2() != null) contador++;
+		    if (resultado.getEquipo2() != null) contador++;
+		    if (resultado.getNroRonda() != null) contador++;
 
+		    return contador;
+	}
 }
 

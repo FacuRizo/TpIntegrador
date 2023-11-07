@@ -10,7 +10,7 @@ public class Interfaz
 {
 	 
 	 
-	   public void menu(ManejoRonda manejoRonda, ArrayList<Ronda> rondaOrdenada, ArrayList<Partido> listaPartido , ArrayList<Pronostico> listaPronostico,ArrayList<Ronda> listaRonda )
+	   public void menu(ArrayList<Ronda> rondaOrdenada, ArrayList<Partido> listaPartido , ArrayList<Pronostico> listaPronostico,ArrayList<Ronda> listaRonda )
 	   {
 		  //	ManejoRonda manejoRonda= new ManejoRonda();
 		  // 	ArrayList<Ronda> rondaOrdenada= new ArrayList<Ronda>();
@@ -40,14 +40,14 @@ public class Interfaz
 		    System.out.println("---------");
 		    System.out.println("");
 		    */
-		    this.menuPuntaje2(manejoRonda,rondaOrdenada, listaPronostico);
+		    this.menuPuntaje2(rondaOrdenada, listaPronostico);
 		    
 	   }
 	   
-	   public void menuTest(ManejoRonda manejoRonda,ArrayList<Pronostico> listaPronostico)
+	   public void menuTest(ArrayList<Pronostico> listaPronostico)
 	   {
 		   Map<String, ArrayList<Pronostico> > pronosticoHash =new HashMap<>();
-		    pronosticoHash= manejoRonda.listaPronosticoHash(listaPronostico);
+		    pronosticoHash= ManejoRonda.listaPronosticoHash(listaPronostico);
 		    for (String i : pronosticoHash.keySet())
 		    {
 		    	System.out.println("key: " + i + " value: " + pronosticoHash.get(i));
@@ -81,11 +81,11 @@ public class Interfaz
 			}
 	   }*/
 	   
-	   public void menuPuntaje2(ManejoRonda manejoRonda,ArrayList<Ronda> rondaOrdenada, ArrayList<Pronostico> listaPronostico)
+	   public void menuPuntaje2(ArrayList<Ronda> rondaOrdenada, ArrayList<Pronostico> listaPronostico)
 	   {
-		   Map<String, ArrayList<Pronostico>> pronosticoHash = manejoRonda.listaPronosticoHash(listaPronostico);	
+		   Map<String, ArrayList<Pronostico>> pronosticoHash = ManejoRonda.listaPronosticoHash(listaPronostico);	
 
-		   Map<String, Integer> puntosPorParticipante = manejoRonda.puntos2(pronosticoHash, rondaOrdenada);
+		   Map<String, Integer> puntosPorParticipante = ManejoRonda.puntos2(pronosticoHash, rondaOrdenada);
 		   
 		   System.out.println("PUNTAJES TOTALES: \n");
 		   
