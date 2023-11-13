@@ -85,14 +85,16 @@ public class Interfaz
 	   {
 		   Map<String, ArrayList<Pronostico>> pronosticoHash = ManejoRonda.listaPronosticoHash(listaPronostico);	
 
-		   Map<String, Integer> puntosPorParticipante = ManejoRonda.puntos2(pronosticoHash, rondaOrdenada);
+		   Map<String,ArrayList <Integer>> puntosPorParticipante = ManejoRonda.puntosPartyAcertadas(pronosticoHash, rondaOrdenada);
 		   
 		   System.out.println("PUNTAJES TOTALES: \n");
 		   
 		    for (String nombre : puntosPorParticipante.keySet()) 
 		    {
-		        int puntosParticipante = puntosPorParticipante.get(nombre);
-		        System.out.println(nombre + ": " + puntosParticipante);
+		    	ArrayList<Integer> puntosPorRonda = puntosPorParticipante.get(nombre);
+		        int puntosParticipante = puntosPorRonda.get(0);
+		        int cantGanadas =puntosPorRonda.get(1);
+		        System.out.println(nombre + ": " + puntosParticipante + " Acertadas: "+cantGanadas);
 		    }
 
 		   

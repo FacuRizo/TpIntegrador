@@ -19,7 +19,7 @@ public class LectorArchivosResultado
 		LineasArchivoResultado= new ArrayList<ArchivoResultado>();
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked", "rawtypes", "resource" })
 	public void parserArchivo()
 	{
 		List<ArchivoResultado> listResultado=null;

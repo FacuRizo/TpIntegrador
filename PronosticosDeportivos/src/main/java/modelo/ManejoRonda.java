@@ -48,20 +48,31 @@ public class ManejoRonda
 	}
 	*/
 	
-	public static Map<String, Integer> puntos2 (Map<String, ArrayList<Pronostico>> pronosticoHash, ArrayList<Ronda> listaRonda)
+	public static Map<String,ArrayList <Integer>> puntosPartyAcertadas (Map<String, ArrayList<Pronostico>> pronosticoHash, ArrayList<Ronda> listaRonda)
 	{
-		 Map<String, Integer> puntosPorParticipante = new HashMap<>();
+		 Map<String, ArrayList <Integer>> puntosPorParticipante = new HashMap<>();
 
 		    for (String nombre : pronosticoHash.keySet()) 
 		    {
+		    	
 		        int puntosParticipante = 0;
+		        int cantDeAcertadas=0;
+		        ArrayList<Integer> puntosPorRonda = new ArrayList<>();
 
 		        for (Ronda rondaIndividual : listaRonda) 
 		        {
+		        	  
 		            puntosParticipante += rondaIndividual.puntos(pronosticoHash.get(nombre), nombre);
+		            if ( (rondaIndividual.puntos(pronosticoHash.get(nombre), nombre)) // condicion?
+		            {
+		            	
+		            	cantDeAcertadas++;
+		            }
 		        }
+		        puntosPorRonda.add(puntosParticipante);
+		        puntosPorRonda.add(cantDeAcertadas);
 
-		        puntosPorParticipante.put(nombre, puntosParticipante);
+		        puntosPorParticipante.put(nombre, puntosPorRonda);
 		    }
 
 		    return puntosPorParticipante;	

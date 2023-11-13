@@ -13,12 +13,12 @@ public class SistemaPronostico
 	private ArrayList<Ronda> rondaOrdenada= new ArrayList<Ronda>();	
 	private Interfaz interfaz= new Interfaz();
 	
-	public void sistemaInicio (String archivoPartido , String archivoPronostico) 
+	public void sistemaInicio (String[] args) 
 	{
-		try
+		try 
 		{
-			inicializarPartido(archivoPartido);
-			iniciarlizarPronostico(archivoPronostico);
+			inicializarPartido(args[0]);
+			iniciarlizarPronostico(args[1]);
 			rondaOrdenada();		
 			interfaz.menu(rondaOrdenada,partidosFinal, pronosticoFinal,rondaFinal);
 

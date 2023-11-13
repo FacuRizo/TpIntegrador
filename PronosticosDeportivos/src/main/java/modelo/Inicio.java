@@ -6,7 +6,7 @@ public class Inicio
 	public static void main(String[] args) 
 	{
 		SistemaPronostico sistema = new SistemaPronostico();
-        sistema.sistemaInicio(args[0], args[1]);
+        sistema.sistemaInicio(args);
 	}
 }
         
