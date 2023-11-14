@@ -8,6 +8,7 @@ import java.util.Map;
 public class Interfaz 
 
 {
+
 	 
 	 
 	   public void menu(ArrayList<Ronda> rondaOrdenada, ArrayList<Partido> listaPartido , ArrayList<Pronostico> listaPronostico,ArrayList<Ronda> listaRonda )
@@ -44,7 +45,7 @@ public class Interfaz
 		    
 	   }
 	   
-	   public void menuTest(ArrayList<Pronostico> listaPronostico)
+/*	   public void menuTest(ArrayList<Pronostico> listaPronostico)
 	   {
 		   Map<String, ArrayList<Pronostico> > pronosticoHash =new HashMap<>();
 		    pronosticoHash= ManejoRonda.listaPronosticoHash(listaPronostico);
@@ -53,7 +54,7 @@ public class Interfaz
 		    	System.out.println("key: " + i + " value: " + pronosticoHash.get(i));
 			}
 			
-	   }
+	   }*/
 	   
 	   // Menu del Puntaje sin HashMap
 	   
@@ -94,7 +95,7 @@ public class Interfaz
 		    	ArrayList<Integer> puntosPorRonda = puntosPorParticipante.get(nombre);
 		        int puntosParticipante = puntosPorRonda.get(0);
 		        int cantGanadas =puntosPorRonda.get(1);
-		        System.out.println(nombre + ": " + puntosParticipante + " Acertadas: "+cantGanadas);
+		        System.out.println("Participante : "+ nombre + " Puntos: " + puntosParticipante + " Acertadas: "+cantGanadas);
 		    }
 
 		   
