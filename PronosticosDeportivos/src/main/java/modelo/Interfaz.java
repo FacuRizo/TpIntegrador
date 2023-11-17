@@ -84,9 +84,9 @@ public class Interfaz
 	   
 	   public void menuPuntaje2(ArrayList<Ronda> rondaOrdenada, ArrayList<Pronostico> listaPronostico)
 	   {
-		   Map<String, ArrayList<Pronostico>> pronosticoHash = ManejoRonda.listaPronosticoHash(listaPronostico);	
+		   Map<String, ArrayList<Pronostico>> pronosticoHash = GestorCompetencia.listaPronosticoHash(listaPronostico);	
 
-		   Map<String,ArrayList <Integer>> puntosPorParticipante = ManejoRonda.puntosPartyAcertadas(pronosticoHash, rondaOrdenada);
+		   Map<String,ArrayList <Integer>> puntosPorParticipante = GestorCompetencia.puntosPartyAcertadas(pronosticoHash, rondaOrdenada);
 		   
 		   System.out.println("PUNTAJES TOTALES: \n");
 		   
