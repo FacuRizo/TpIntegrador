@@ -48,7 +48,7 @@ public class SistemaPronostico
 	
 	private void rondaOrdenada()
 	{
-		rondaOrdenada=ManejoRonda.crearRondas(partidosFinal);
+		rondaOrdenada=GestorCompetencia.crearRondas(partidosFinal);
 	}
 
 

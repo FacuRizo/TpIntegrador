@@ -19,7 +19,7 @@ public class LectorArchivosResultado
 		LineasArchivoResultado= new ArrayList<ArchivoResultado>();
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes", "resource" })
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void parserArchivo()
 	{
 		List<ArchivoResultado> listResultado=null;
@@ -113,6 +113,7 @@ public class LectorArchivosResultado
 		}
 		return partidosFinal; // devolvemos lista de partidos
 	}
+	
 	
 	private  static int contarColumnas(ArchivoResultado resultado)
 	{
