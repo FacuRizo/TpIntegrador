@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import java.util.Map;
 
-public class GestorCompetencia 
+public class ManejoRonda 
 
 {
 

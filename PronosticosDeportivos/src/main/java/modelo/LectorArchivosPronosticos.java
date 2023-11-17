@@ -18,7 +18,7 @@ public class LectorArchivosPronosticos
 		LineasArchivoPronostico= new ArrayList<ArchivoPronostico>();
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked", "rawtypes", "resource" })
 	public void parserArchivo()
 	{
 		List<ArchivoPronostico> listPronostico=null;
@@ -158,5 +158,6 @@ public class LectorArchivosPronosticos
 
 		    return contador;
 	}
+	
 	
 }
