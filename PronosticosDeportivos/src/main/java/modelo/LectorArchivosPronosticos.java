@@ -18,7 +18,7 @@ public class LectorArchivosPronosticos
 		LineasArchivoPronostico= new ArrayList<ArchivoPronostico>();
 	}
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked", "rawtypes", "resource" })
 	public void parserArchivo()
 	{
 		List<ArchivoPronostico> listPronostico=null;
@@ -34,6 +34,7 @@ public class LectorArchivosPronosticos
 	                    .withType(ArchivoPronostico.class)
 	                    .build()
 	                    .parse();
+
 			  	
 			    for (ArchivoPronostico pronostico : listPronostico) 
 			    {
