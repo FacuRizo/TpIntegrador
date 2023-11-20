@@ -8,10 +8,10 @@ public class SistemaPronostico
 
 {
 	private ArrayList<Partido> partidosFinal=new ArrayList<Partido>(); 
-	private ArrayList<Pronostico> pronosticoFinal=new ArrayList<Pronostico>(); 
+	public ArrayList<Pronostico> pronosticoFinal=new ArrayList<Pronostico>(); 
 	private ArrayList<Ronda> rondaFinal=new ArrayList<Ronda>(); 		
-	private ArrayList<Ronda> rondaOrdenada= new ArrayList<Ronda>();	
-	private Interfaz interfaz= new Interfaz();
+	public ArrayList<Ronda> rondaOrdenada= new ArrayList<Ronda>();	
+	private Interfaz interfaz = new Interfaz();
 	
 	public void sistemaInicio (String[] args) 
 	{
