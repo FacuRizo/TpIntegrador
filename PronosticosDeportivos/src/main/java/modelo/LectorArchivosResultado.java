@@ -67,7 +67,7 @@ public class LectorArchivosResultado
 	
 	public ArrayList<Partido> agregarObjPartido (List<ArchivoResultado> listaPartidos)
 	{
-		ArrayList<Partido> partidosFinal=new ArrayList<Partido>(); 
+		ArrayList<Partido> partidosFinal = new ArrayList<Partido>(); 
 		for (ArchivoResultado partidoIndividual: listaPartidos)
 		{
 			int cantGoles1 = 0;
@@ -77,9 +77,6 @@ public class LectorArchivosResultado
 				cantGoles1 = Integer.parseInt(partidoIndividual.getCantGoles1());
 				cantGoles2 = Integer.parseInt(partidoIndividual.getCantGoles2());
 				
-			
-			
-			
 			//boolean gana=Boolean.parseBoolean(pronostico1.getGana1());
 			int nroRonda = Integer.parseInt(partidoIndividual.getNroRonda());
 			

@@ -10,15 +10,14 @@ public class Pronostico
 	private Equipo equipo;
 	private ResultadoEnum resultado;
 	private String participante;
+	private int cantPuntos;
 
-	
-	
 	public int puntos(ResultadoEnum resReal)
 	{
 		if(resReal.equals(resultado))
 		{
 			//System.out.println("Le pegaste");
-			return 3;
+			return Puntaje.getPuntaje();
 		}
 		else
 		{

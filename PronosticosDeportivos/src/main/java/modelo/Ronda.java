@@ -24,7 +24,7 @@ public class Ronda
 				{
 					ResultadoEnum res=partidoIndividual.resultado(pronosticoIndividual.getEquipo());
 					puntoFinal+=pronosticoIndividual.puntos(res);
-					
+				
 				}
 			}
 			

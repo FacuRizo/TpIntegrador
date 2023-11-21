@@ -1,6 +1,6 @@
 ﻿Participante,Equipo1,Gana1,Empata,Gana2,Equipo2
-Mariana,Argentina,true,false,false,Arabia Saudita
-Mariana,Polonia,false,true,false,Mexico
+Mariana,Argentina,false,true,false,Arabia Saudita
+Mariana,Polonia,false,false,true,Mexico
 Mariana,Alemania,true,false,false,Italia
 Mariana,Venezuela,false,false,true,España
 Pedro,Argentina,true,false,false,Arabia Saudita
