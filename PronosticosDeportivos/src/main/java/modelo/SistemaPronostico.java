@@ -2,8 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+
 
 
 public class SistemaPronostico 
@@ -15,7 +14,23 @@ public class SistemaPronostico
 	public ArrayList<Ronda> rondaOrdenada= new ArrayList<Ronda>();	
 	private Interfaz interfaz = new Interfaz();
 	
-	public void sistemaInicio (String[] args) 
+	public void sistemaInicio (String[] args, int eleccion)
+	{
+		if(eleccion == 1) 
+		{
+			this.lectorCSV(args);// LEER CON CSV
+		
+		
+		}
+		else if (eleccion == 2) 
+		{
+			this.lectorSQL();  // LEER CON SQL
+		}
+		rondaOrdenada();		
+		interfaz.menu(rondaOrdenada, partidosFinal, pronosticoFinal, rondaFinal);
+	}
+	
+/*	public void sistemaInicio (String[] args, int eleccion) 
 	{
 		try 
 		{	
@@ -24,6 +39,7 @@ public class SistemaPronostico
 			
 			eleccionLectura(scanner, args[0], args[1]);
 			lecturaPuntaje(scanner);
+			
 			scanner.close();
 			
 			rondaOrdenada();		
@@ -36,6 +52,20 @@ public class SistemaPronostico
 			System.err.println(e);
 		}
 		
+	}
+	*/
+	
+	private void lectorCSV(String[] args)	
+	{
+		String archivoPartido= args[0];
+		String archivoPronostico= args[1];
+		inicializarPartido(archivoPartido);
+		inicializarPronostico(archivoPronostico);
+	}
+	
+	private void lectorSQL() {
+		partidosFinal = LectorResultadoSQL.lectura();
+		pronosticoFinal = LectorPronosticoSQL.lectura();
 	}
 	
 	private void inicializarPartido(String archivoPartido)
@@ -59,16 +89,8 @@ public class SistemaPronostico
 		rondaOrdenada = GestorCompetencia.crearRondas(partidosFinal);
 	}
 
-	private void lectorCSV(String archivoPartido, String archivoPronostico) {
-		inicializarPartido(archivoPartido);
-		inicializarPronostico(archivoPronostico);
-	}
 	
-	private void lectorSQL() {
-		partidosFinal = LectorResultadoSQL.lectura();
-		pronosticoFinal = LectorPronosticoSQL.lectura();
-	}
-	
+	/*
 	private void eleccionLectura(Scanner scan, String arg1, String arg2) {
 		System.out.println("Leer archivos por: 1. CSV || 2. SQL");
 		int eleccion = scan.nextInt();
@@ -91,4 +113,6 @@ public class SistemaPronostico
 		
 		Puntaje.setPuntaje(puntaje);
 	}
+*/
+
 }

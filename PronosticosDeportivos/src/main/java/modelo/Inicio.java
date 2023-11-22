@@ -5,8 +5,10 @@ public class Inicio
 {
 	public static void main(String[] args) 
 	{
-		SistemaPronostico sistema = new SistemaPronostico();
-        sistema.sistemaInicio(args);
+		InterfazSeleccion interfaz=new InterfazSeleccion();
+		interfaz.menuSeleccion(args);
+		/*SistemaPronostico sistema = new SistemaPronostico();
+        sistema.sistemaInicio(args);*/
 	}
 }
         
