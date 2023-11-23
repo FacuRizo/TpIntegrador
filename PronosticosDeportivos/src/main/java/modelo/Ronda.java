@@ -10,6 +10,7 @@ public class Ronda
 
 	private int nro;
 	private ArrayList<Partido> listaPartidos;
+	private FaseEnum nombreFase;
 	
 	public int puntos (ArrayList<Pronostico> listaPronostico, String nomParticipante)
 	{

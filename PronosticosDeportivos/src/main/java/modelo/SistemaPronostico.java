@@ -12,6 +12,7 @@ public class SistemaPronostico
 	public ArrayList<Pronostico> pronosticoFinal=new ArrayList<Pronostico>(); 
 	private ArrayList<Ronda> rondaFinal=new ArrayList<Ronda>(); 		
 	public ArrayList<Ronda> rondaOrdenada= new ArrayList<Ronda>();	
+	private ArrayList<Fase> faseOrdenada = new ArrayList<Fase>();
 	private Interfaz interfaz = new Interfaz();
 	
 	public void sistemaInicio (String[] args, int eleccion)
@@ -26,8 +27,8 @@ public class SistemaPronostico
 		{
 			this.lectorSQL();  // LEER CON SQL
 		}
-		rondaOrdenada();		
-		interfaz.menu(rondaOrdenada, partidosFinal, pronosticoFinal, rondaFinal);
+		rondayFasesOrdenada(); // agregar uso de fase
+		interfaz.menu(rondaOrdenada, partidosFinal, pronosticoFinal, rondaFinal,faseOrdenada);
 	}
 	
 /*	public void sistemaInicio (String[] args, int eleccion) 
@@ -84,9 +85,10 @@ public class SistemaPronostico
 		pronosticoFinal = lectorPronostico.agregarObjPronostico(pronosticos);
 	}
 	
-	private void rondaOrdenada()
+	private void rondayFasesOrdenada()
 	{
 		rondaOrdenada = GestorCompetencia.crearRondas(partidosFinal);
+		faseOrdenada = GestorCompetencia.crearFases(rondaOrdenada);
 	}
 
 	

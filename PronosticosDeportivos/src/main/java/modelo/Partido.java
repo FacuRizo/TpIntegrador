@@ -12,6 +12,7 @@ public class Partido
 	private int golesEquipo2;
 	private int nroRonda;
 
+
 	public boolean equals(Partido part) {
 		if(this.equipo1.equals(part.getEquipo1()) && this.equipo2.equals(part.getEquipo2())) {
 			return true;
