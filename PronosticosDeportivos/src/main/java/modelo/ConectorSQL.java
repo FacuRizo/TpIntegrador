@@ -9,5 +9,5 @@ public class ConectorSQL {
 	
 	// Credenciales
 	public static final String USER = "root";
-	public static final String PASS = "root";
+	public static final String PASS = "admin";
 }

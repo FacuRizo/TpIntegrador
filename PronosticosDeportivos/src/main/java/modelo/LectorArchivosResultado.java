@@ -79,6 +79,7 @@ public class LectorArchivosResultado
 				
 			//boolean gana=Boolean.parseBoolean(pronostico1.getGana1());
 			int nroRonda = Integer.parseInt(partidoIndividual.getNroRonda());
+			String fase = partidoIndividual.getFase();
 			
 			//inicializamos
 			Equipo equipo1 = new Equipo();
@@ -96,6 +97,7 @@ public class LectorArchivosResultado
 			partido.setGolesEquipo2(cantGoles2);
 			
 			partido.setNroRonda(nroRonda);
+			partido.setFase(seleccionarFase(fase));
 			
 			partidosFinal.add(partido);		
 		
@@ -122,6 +124,20 @@ public class LectorArchivosResultado
 		    if (resultado.getNroRonda() != null) contador++;
 
 		    return contador;
+	}
+	
+	private static FaseEnum seleccionarFase(String faseRecibida) {
+		FaseEnum faseRetornada;
+		
+		if(faseRecibida.equals("Grupos")) {
+			faseRetornada = FaseEnum.Grupos;
+		} else if(faseRecibida.equals("Eliminatorias")) {
+			faseRetornada = FaseEnum.Eliminatorias;
+		} else {
+			faseRetornada = FaseEnum.Finales;
+		}
+		
+		return faseRetornada;
 	}
 }
 

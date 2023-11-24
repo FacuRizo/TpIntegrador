@@ -28,6 +28,7 @@ public class GestorCompetencia
 				
 						faseHash.put(nombreFase, fase);
 					}
+					
 					fase.getListaRonda().add(rondaIndividual);
 			}
 	
@@ -37,6 +38,8 @@ public class GestorCompetencia
 			return faseFinal;
 			
 	}
+	
+	
 	
 	public static  ArrayList<Ronda> crearRondas(ArrayList<Partido> partidoFinal)
 	{
@@ -55,7 +58,7 @@ public class GestorCompetencia
 					ronda = new Ronda();
 					ronda.setNro(nroRonda);
 					ronda.setListaPartidos(new ArrayList<>());
-					ronda.setNombreFase(seleccionarFase(partidoIndividual));
+					ronda.setNombreFase(partidoIndividual.getFase());
 					rondaHash.put(nroRonda, ronda);
 				}
 				ronda.getListaPartidos().add(partidoIndividual);
@@ -66,25 +69,7 @@ public class GestorCompetencia
 		return rondaFinal;
 		
 	}
-	
-	private static FaseEnum seleccionarFase(Partido partidoIndividual)
-	{
-		FaseEnum fase;
-		if (partidoIndividual.getNroRonda()==1)
-		{
-			fase=FaseEnum.Eliminatorias;
-		}
-		else if (partidoIndividual.getNroRonda()==2)
-		{
-			fase=FaseEnum.Grupos;
-		}
-		else
-		{
-			fase=FaseEnum.Finales;
-		}
-		return fase;
-			
-	}
+
 	// Calculo del Puntaje sin HashMap
 	
 	/*
@@ -104,23 +89,27 @@ public class GestorCompetencia
 		 int nroRonda=0;
 		    for (String nombre : pronosticoHash.keySet()) 
 		    {
-		    	int puntosParticipante = 0;
-		        int cantDeAcertadas=0;
-		        
+		    	
 		        ArrayList<ArrayList<Integer>> puntosPorRonda = new ArrayList<>();
 
 		        for (Ronda rondaIndividual : listaRonda) 
 		        {
+		        	
+		        	int puntosParticipante = 0;
+			        int cantDeAcertadas=0;
+		        	int puntosExtras = 0;
+			        
 		        	ArrayList<Integer> puntosPorRondaIndividual = new ArrayList<>();  
 		        	
 		            puntosParticipante += rondaIndividual.puntos(pronosticoHash.get(nombre), nombre);
 		            cantDeAcertadas+=rondaIndividual.aciertos(pronosticoHash.get(nombre), nombre);
 		            nroRonda =rondaIndividual.getNro();
-		            puntajeExtraRonda(puntosParticipante, cantDeAcertadas, rondaIndividual);
+		            puntosExtras = puntajeExtraRonda(puntosParticipante, cantDeAcertadas, rondaIndividual);
 		            
-		            puntosPorRondaIndividual.add(puntosParticipante);
-		            puntosPorRondaIndividual.add(cantDeAcertadas);
 		            puntosPorRondaIndividual.add(nroRonda);
+		            puntosPorRondaIndividual.add(cantDeAcertadas);
+		            puntosPorRondaIndividual.add(puntosParticipante);
+		            puntosPorRondaIndividual.add(puntosExtras);
 		            puntosPorRonda.add(puntosPorRondaIndividual);
 		            
 		        }
@@ -138,13 +127,15 @@ public class GestorCompetencia
 	
 	private static int puntajeExtraRonda (int puntosParticipante, int cantDeAcertadas , Ronda rondaIndividual)
 	{
-		int puntosExtra=3;
+		int puntosExtra = Puntaje.getPuntaje();
 		if (cantDeAcertadas==rondaIndividual.getListaPartidos().size())
 		{
-			puntosParticipante=puntosParticipante+puntosExtra;
+			// puntosParticipante = puntosExtra;
+			return puntosExtra;
+			//System.out.println("Le pegaste a toda la ronda");
 		}
-		return puntosParticipante;
-		
+		// return puntosParticipante;
+		return 0;
 	}
 
 	public static Map<String, ArrayList<Pronostico>> listaPronosticoHash (ArrayList<Pronostico> partidoFinal)

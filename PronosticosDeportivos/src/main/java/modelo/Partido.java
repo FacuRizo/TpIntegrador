@@ -11,6 +11,7 @@ public class Partido
 	private int golesEquipo1;
 	private int golesEquipo2;
 	private int nroRonda;
+	private FaseEnum fase;
 
 
 	public boolean equals(Partido part) {

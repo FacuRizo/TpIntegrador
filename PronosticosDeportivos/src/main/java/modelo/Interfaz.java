@@ -64,14 +64,18 @@ public class Interfaz
 		    for (String nombre : puntosPorParticipante.keySet()) 
 		    {
 		    	 
-		    	 ArrayList<ArrayList<Integer>> puntosPorRonda = puntosPorParticipante.get(nombre);
+		    	ArrayList<ArrayList<Integer>> puntosPorRonda = puntosPorParticipante.get(nombre);
 		    	for (ArrayList<Integer> puntosPorRondaIndividual : puntosPorRonda)
 		    	{
 		    		
-		    	 int puntosParticipante = puntosPorRondaIndividual.get(0);
+		    	 int rondanro=puntosPorRondaIndividual.get(0);
 		    	 int cantGanadas =puntosPorRondaIndividual.get(1);
-				 int rondanro=puntosPorRondaIndividual.get(2);
-				 System.out.println("Participante : "+ nombre + " Puntos: " + puntosParticipante + " Acertadas: "+cantGanadas+ " Ronda: "+rondanro);
+				 int puntosParticipante = puntosPorRondaIndividual.get(2);
+				 int puntosExtras = puntosPorRondaIndividual.get(3);
+				 
+				System.out.println("Participante: " + nombre + " | Ronda: " + rondanro + " | Acertadas: " 
+				 + cantGanadas + " | Puntos: " + puntosParticipante + " | Puntos Extra: " + puntosExtras );
+				 
 		    	}
 		       
 		       
@@ -83,7 +87,7 @@ public class Interfaz
 	   public void menuPartidos(ArrayList<Partido> listaPartido)
 	   {
 		    System.out.println("PARTIDOS: \n");
-	        System.out.printf("%-15s%-8s%-8s%-15s\n", "Equipo 1", "Goles 1", "Goles 2", "Equipo 2");
+	        System.out.printf("%-15s%-8s%-8s%-15s%-15s\n", "Equipo 1", "Goles 1", "Goles 2", "Equipo 2", "Fase");
 	        
 	        for (Partido partidoIndividual : listaPartido)
 	        {
@@ -91,9 +95,10 @@ public class Interfaz
 	            int goles1 = partidoIndividual.getGolesEquipo1();
 	            int goles2 = partidoIndividual.getGolesEquipo2();
 	            String equipo2 =  partidoIndividual.getEquipo2().getNombre();
+	            FaseEnum fase = partidoIndividual.getFase();
 
 
-	            System.out.printf("%-15s%-8d%-8d%-15s\n", equipo1, goles1, goles2, equipo2);
+	            System.out.printf("%-15s%-8d%-8d%-15s%-15s\n", equipo1, goles1, goles2, equipo2, fase);
 	        }
 	   }
 	   

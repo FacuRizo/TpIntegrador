@@ -50,7 +50,7 @@ public class LectorResultadoSQL {
 				partido.setGolesEquipo2(resultado.getInt("Cant_Goles_2"));
 				
 				partido.setNroRonda(resultado.getInt("Nro_Ronda"));
-							
+				partido.setFase(seleccionarFase(resultado.getString("Fase")));
 				partidosFinal.add(partido);
 			}
 			
@@ -74,5 +74,19 @@ public class LectorResultadoSQL {
 	    }
 		
 		return partidosFinal;
+	}
+	
+	private static FaseEnum seleccionarFase(String faseRecibida) {
+		FaseEnum faseRetornada;
+		
+		if(faseRecibida.equals("Grupos")) {
+			faseRetornada = FaseEnum.Grupos;
+		} else if(faseRecibida.equals("Eliminatorias")) {
+			faseRetornada = FaseEnum.Eliminatorias;
+		} else {
+			faseRetornada = FaseEnum.Finales;
+		}
+		
+		return faseRetornada;
 	}
 }

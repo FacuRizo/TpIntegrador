@@ -19,6 +19,8 @@ public class ArchivoResultado
 	private String CantGoles2;
 	@CsvBindByPosition(position= 4)
 	private String Equipo2;
+	@CsvBindByPosition(position= 5)
+	private String Fase;
 	
 	//  NroRonda,equipo1,cantgoles1,cantgoles2,equipo2
 
