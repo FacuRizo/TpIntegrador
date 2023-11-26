@@ -8,9 +8,6 @@ import java.util.Map;
 public class Interfaz 
 
 {
-
-	 
-	 
 	   public void menu(ArrayList<Ronda> rondaOrdenada, ArrayList<Partido> listaPartido , ArrayList<Pronostico> listaPronostico,ArrayList<Ronda> listaRonda, ArrayList<Fase> faseOrdenada )
 	   {
   
@@ -57,9 +54,7 @@ public class Interfaz
 	   {
 		   Map<String, ArrayList<Pronostico>> pronosticoHash = GestorCompetencia.listaPronosticoHash(listaPronostico);	
 
-		   Map<String, ArrayList<ArrayList<Integer>>>  puntosPorParticipante = GestorCompetencia.puntosPartyAcertadas(pronosticoHash, rondaOrdenada);
-		   
-		   GestorCompetencia.puntajeExtraFase(puntosPorParticipante, faseFinal);
+		   Map<String, ArrayList<ArrayList<Integer>>>  puntosPorParticipante = GestorCompetencia.puntosPartyAcertadas(pronosticoHash, rondaOrdenada, faseFinal);
 
 		   System.out.println("PUNTAJES TOTALES: \n");
 		   
@@ -76,13 +71,9 @@ public class Interfaz
 				 int puntosExtras = puntosPorRondaIndividual.get(3);
 				 
 				System.out.println("Participante: " + nombre + " | Ronda: " + rondanro + " | Acertadas: " 
-				 + cantGanadas + " | Puntos: " + puntosParticipante + " | Puntos Extra: " + puntosExtras );
-				 
-
+				 + cantGanadas + " | Puntos: " + puntosParticipante + " | Puntos Extra: " + puntosExtras);
 		    	}
 		    }
-
-		   
 	   }
 	   
 	   public void menuPartidos(ArrayList<Partido> listaPartido)

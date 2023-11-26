@@ -32,6 +32,7 @@ public class Ronda
 		}
 		return puntoFinal;
 	}
+
 	 public int aciertos(ArrayList<Pronostico> listaPronostico, String nomParticipante) 
 	 {
 	        int aciertos = 0;
@@ -52,7 +53,13 @@ public class Ronda
 	            }
 	        }
 	        return aciertos;
-	    }
+	}
+
+	public boolean aciertosBool(ArrayList<Pronostico> listaPronostico, String nomParticipante)
+	{
+		int aciertos = aciertos(listaPronostico, nomParticipante);
+		return aciertos == listaPartidos.size();
+	}
 
 }
 
