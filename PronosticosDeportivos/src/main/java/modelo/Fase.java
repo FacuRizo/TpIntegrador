@@ -11,5 +11,5 @@ public class Fase
 {
 	private FaseEnum nombreFase;
 	private ArrayList<Ronda> listaRonda;
-	
+	private int puntos;
 }

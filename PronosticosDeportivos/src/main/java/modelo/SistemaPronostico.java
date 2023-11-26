@@ -90,31 +90,5 @@ public class SistemaPronostico
 		rondaOrdenada = GestorCompetencia.crearRondas(partidosFinal);
 		faseOrdenada = GestorCompetencia.crearFases(rondaOrdenada);
 	}
-
-	
-	/*
-	private void eleccionLectura(Scanner scan, String arg1, String arg2) {
-		System.out.println("Leer archivos por: 1. CSV || 2. SQL");
-		int eleccion = scan.nextInt();
-		
-		if(eleccion == 1) {
-			lectorCSV(arg1, arg2);  // LEER CON CSV
-		} else if(eleccion == 2){
-			lectorSQL();  // LEER CON SQL
-		} else {
-			System.out.println("No se pudo leer correctamente ninguna opcion!");
-		}
-
-	}
-
-	private void lecturaPuntaje(Scanner scan) {
-		System.out.println(" ");
-		
-		System.out.println("Ingrese la cantidad de puntos por acierto:");
-		int puntaje = scan.nextInt();
-		
-		Puntaje.setPuntaje(puntaje);
-	}
-*/
-
 }
+

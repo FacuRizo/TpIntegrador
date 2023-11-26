@@ -33,7 +33,7 @@ public class Interfaz
 		    System.out.println("");
 		    System.out.println("---------");
 		    System.out.println("");
-		    this.menuPuntaje2(rondaOrdenada, listaPronostico);
+		    this.menuPuntaje2(rondaOrdenada, listaPronostico, faseOrdenada);
 		    
 	   }
 	  
@@ -53,12 +53,14 @@ public class Interfaz
 		
 	   }
 
-	public void menuPuntaje2(ArrayList<Ronda> rondaOrdenada, ArrayList<Pronostico> listaPronostico)
+	public void menuPuntaje2(ArrayList<Ronda> rondaOrdenada, ArrayList<Pronostico> listaPronostico, ArrayList<Fase> faseFinal)
 	   {
 		   Map<String, ArrayList<Pronostico>> pronosticoHash = GestorCompetencia.listaPronosticoHash(listaPronostico);	
 
 		   Map<String, ArrayList<ArrayList<Integer>>>  puntosPorParticipante = GestorCompetencia.puntosPartyAcertadas(pronosticoHash, rondaOrdenada);
 		   
+		   GestorCompetencia.puntajeExtraFase(puntosPorParticipante, faseFinal);
+
 		   System.out.println("PUNTAJES TOTALES: \n");
 		   
 		    for (String nombre : puntosPorParticipante.keySet()) 
@@ -76,9 +78,8 @@ public class Interfaz
 				System.out.println("Participante: " + nombre + " | Ronda: " + rondanro + " | Acertadas: " 
 				 + cantGanadas + " | Puntos: " + puntosParticipante + " | Puntos Extra: " + puntosExtras );
 				 
+
 		    	}
-		       
-		       
 		    }
 
 		   

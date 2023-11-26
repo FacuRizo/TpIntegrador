@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class InterfazSeleccion
 {
 	private int puntaje;
+	private int puntajeExtra;
 	private int eleccion;
 	private SistemaPronostico sistemaPronostico =new SistemaPronostico();
 	
@@ -32,10 +33,15 @@ public class InterfazSeleccion
 	{
 		System.out.println(" ");
 		
-		System.out.println("Ingrese la cantidad de puntos por acierto:");
+		System.out.println("Ingrese la cantidad de puntos por acierto: ");
 		puntaje = scan.nextInt();
 		
 		Puntaje.setPuntaje(puntaje);
+
+		System.out.println("Ingrese la cantidad de puntos extra : ");
+		puntajeExtra = scan.nextInt();
+
+		Puntaje.setPuntajeExtra(puntajeExtra);
 	}
 	
 	private int eleccionLectura(Scanner scan, String[] args) 
