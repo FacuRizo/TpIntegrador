@@ -31,31 +31,7 @@ public class SistemaPronostico
 		interfaz.menu(rondaOrdenada, partidosFinal, pronosticoFinal, rondaFinal,faseOrdenada);
 	}
 	
-/*	public void sistemaInicio (String[] args, int eleccion) 
-	{
-		try 
-		{	
-			
-			Scanner scanner = new Scanner(System.in);
-			
-			eleccionLectura(scanner, args[0], args[1]);
-			lecturaPuntaje(scanner);
-			
-			scanner.close();
-			
-			rondaOrdenada();		
-			interfaz.menu(rondaOrdenada, partidosFinal, pronosticoFinal, rondaFinal);
 
-		}
-		catch (NoSuchElementException e)
-		{
-			System.err.println("Se esperaban 2 argumentos");
-			System.err.println(e);
-		}
-		
-	}
-	*/
-	
 	private void lectorCSV(String[] args)	
 	{
 		String archivoPartido= args[0];
@@ -64,7 +40,8 @@ public class SistemaPronostico
 		inicializarPronostico(archivoPronostico);
 	}
 	
-	private void lectorSQL() {
+	private void lectorSQL() 
+	{
 		partidosFinal = LectorResultadoSQL.lectura();
 		pronosticoFinal = LectorPronosticoSQL.lectura();
 	}

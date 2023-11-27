@@ -12,6 +12,10 @@ public class Ronda
 	private ArrayList<Partido> listaPartidos;
 	private FaseEnum nombreFase;
 	
+	
+	/*
+	 *  Permite calcular los puntos  a partir de una lista de pronosticos y un nombre
+	 */
 	public int puntos (ArrayList<Pronostico> listaPronostico, String nomParticipante)
 	{
 		int puntoFinal=0;
@@ -32,8 +36,12 @@ public class Ronda
 		}
 		return puntoFinal;
 	}
+	
+	/*
+	 *  calcula la cantida de aciertos en una lista de pronosticos
+	 */
 
-	 public int aciertos(ArrayList<Pronostico> listaPronostico, String nomParticipante) 
+	public int aciertos(ArrayList<Pronostico> listaPronostico, String nomParticipante) 
 	 {
 	        int aciertos = 0;
 
