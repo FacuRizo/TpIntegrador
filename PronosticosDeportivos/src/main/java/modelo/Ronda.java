@@ -38,7 +38,7 @@ public class Ronda
 	}
 	
 	/*
-	 *  calcula la cantida de aciertos en una lista de pronosticos
+	 *  calcula la cantidad de aciertos en una lista de pronosticos
 	 */
 
 	public int aciertos(ArrayList<Pronostico> listaPronostico, String nomParticipante) 
@@ -63,6 +63,7 @@ public class Ronda
 	        return aciertos;
 	}
 
+	
 	public boolean aciertosBool(ArrayList<Pronostico> listaPronostico, String nomParticipante)
 	{
 		int aciertos = aciertos(listaPronostico, nomParticipante);

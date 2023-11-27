@@ -68,4 +68,3 @@ public class SistemaPronostico
 		faseOrdenada = GestorCompetencia.crearFases(rondaOrdenada);
 	}
 }
-

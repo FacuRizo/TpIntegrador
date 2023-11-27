@@ -38,7 +38,7 @@ public class InterfazSeleccion
 		
 		Puntaje.setPuntaje(puntaje);
 
-		System.out.println("Ingrese la cantidad de puntos extra : ");
+		System.out.println("Ingrese la cantidad de puntos extra: ");
 		puntajeExtra = scan.nextInt();
 
 		Puntaje.setPuntajeExtra(puntajeExtra);

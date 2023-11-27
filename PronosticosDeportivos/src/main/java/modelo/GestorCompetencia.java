@@ -72,6 +72,7 @@ public class GestorCompetencia {
 
                 for (Fase fase : faseFinal)
                 {
+					boolean bandera = false;
 					puntosExtrasFase = 0;
 
                     if (fase.aciertosFaseBool(pronosticoHash.get(nombre), nombre)) 
@@ -95,7 +96,13 @@ public class GestorCompetencia {
 						puntosPorRondaIndividual.add(nroRonda);
 						puntosPorRondaIndividual.add(cantDeAcertadas);
 						puntosPorRondaIndividual.add(puntosParticipante);
-						puntosPorRondaIndividual.add(puntosExtras + puntosExtrasFase);
+
+						if(!bandera){
+							puntosPorRondaIndividual.add(puntosExtras + puntosExtrasFase);
+							bandera = true;
+						}else{
+							puntosPorRondaIndividual.add(puntosExtras);
+						}
 
 						puntosPorRonda.add(puntosPorRondaIndividual);
 					}
@@ -134,4 +141,33 @@ public class GestorCompetencia {
 		}
 		return pronosticoHash;
 	}
+
+	public static int puntosTotales(Map<String, ArrayList<ArrayList<Integer>>> puntosPorParticipante, String nombreParticipante)
+	{
+		int puntosTotales = 0;
+		// Puntos Por Ronda = [nroRonda, cantDeAcertadas, puntosParticipante, puntosExtras]
+		for (ArrayList<Integer> puntosPorRonda : puntosPorParticipante.get(nombreParticipante)) 
+		{
+			puntosTotales += puntosPorRonda.get(2);
+			puntosTotales += puntosPorRonda.get(3);
+		}
+		return puntosTotales;
+	}
+
+	public static String ganador(Map<String, ArrayList<ArrayList<Integer>>> puntosPorParticipante)
+	{
+		String ganador = "";
+		int puntosMax = 0;
+		for (String nombre : puntosPorParticipante.keySet()) 
+		{
+			int puntosTotales = puntosTotales(puntosPorParticipante, nombre);
+			if (puntosTotales > puntosMax)
+			{
+				puntosMax = puntosTotales;
+				ganador = nombre;
+			}
+		}
+		return ganador;
+	}
 }
+

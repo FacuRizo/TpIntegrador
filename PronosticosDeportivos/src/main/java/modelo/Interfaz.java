@@ -30,7 +30,7 @@ public class Interfaz
 		    System.out.println("");
 		    System.out.println("---------");
 		    System.out.println("");
-		    this.menuPuntaje2(rondaOrdenada, listaPronostico, faseOrdenada);
+		    this.menuPuntaje(rondaOrdenada, listaPronostico, faseOrdenada);
 		    
 	   }
 	  
@@ -50,7 +50,7 @@ public class Interfaz
 		
 	   }
 
-	public void menuPuntaje2(ArrayList<Ronda> rondaOrdenada, ArrayList<Pronostico> listaPronostico, ArrayList<Fase> faseFinal)
+	public void menuPuntaje(ArrayList<Ronda> rondaOrdenada, ArrayList<Pronostico> listaPronostico, ArrayList<Fase> faseFinal)
 	   {
 		   Map<String, ArrayList<Pronostico>> pronosticoHash = GestorCompetencia.listaPronosticoHash(listaPronostico);	
 
@@ -73,7 +73,11 @@ public class Interfaz
 				System.out.println("Participante: " + nombre + " | Ronda: " + rondanro + " | Acertadas: " 
 				 + cantGanadas + " | Puntos: " + puntosParticipante + " | Puntos Extra: " + puntosExtras);
 		    	}
+
+				System.out.println("Puntos Totales: " + GestorCompetencia.puntosTotales(puntosPorParticipante, nombre));
 		    }
+
+			System.out.println("\nGanador: " + GestorCompetencia.ganador(puntosPorParticipante));
 	   }
 	   
 	   public void menuPartidos(ArrayList<Partido> listaPartido)
