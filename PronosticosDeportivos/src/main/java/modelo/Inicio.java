@@ -5,7 +5,11 @@ public class Inicio
 {
 	public static void main(String[] args) 
 	{
-		InterfazSeleccion interfaz=new InterfazSeleccion();
-		interfaz.menuSeleccion(args);
+		// INTERFAZ POR CONSOLA
+		// InterfazSeleccion interfaz=new InterfazSeleccion();
+		// interfaz.menuSeleccion(args);
+		
+		// INTERFAZ GRAFICA
+		InterfazGUI.main(args);
 	}
 }

@@ -52,28 +52,25 @@ public class Interfaz
 	public void menuPuntaje(ArrayList<Ronda> rondaOrdenada, ArrayList<Pronostico> listaPronostico, ArrayList<Fase> faseFinal)
 	   {
 		   Map<String, ArrayList<Pronostico>> pronosticoHash = GestorCompetencia.listaPronosticoHash(listaPronostico);	
-
 		   Map<String, ArrayList<ArrayList<Integer>>>  puntosPorParticipante = GestorCompetencia.puntosPartyAcertadas(pronosticoHash, rondaOrdenada, faseFinal);
 
 		   System.out.println("PUNTAJES TOTALES: \n");
-		   
 		    for (String nombre : puntosPorParticipante.keySet()) 
 		    {
 		    	 
 		    	ArrayList<ArrayList<Integer>> puntosPorRonda = puntosPorParticipante.get(nombre);
 		    	for (ArrayList<Integer> puntosPorRondaIndividual : puntosPorRonda)
 		    	{
-		    		
-		    	 int rondanro=puntosPorRondaIndividual.get(0);
-		    	 int cantGanadas =puntosPorRondaIndividual.get(1);
-				 int puntosParticipante = puntosPorRondaIndividual.get(2);
-				 int puntosExtras = puntosPorRondaIndividual.get(3);
-				 
-				System.out.println("Participante: " + nombre + " | Ronda: " + rondanro + " | Acertadas: " 
-				 + cantGanadas + " | Puntos: " + puntosParticipante + " | Puntos Extra: " + puntosExtras);
-		    	}
-
-				System.out.println("Puntos Totales: " + GestorCompetencia.puntosTotales(puntosPorParticipante, nombre));
+		    		int rondanro=puntosPorRondaIndividual.get(0);
+			    	int cantGanadas =puntosPorRondaIndividual.get(1);
+					int puntosParticipante = puntosPorRondaIndividual.get(2);
+					int puntosExtras = puntosPorRondaIndividual.get(3);
+					 
+					System.out.println("Participante: " + nombre + " | Ronda: " + rondanro + " | Acertadas: " 
+					 + cantGanadas + " | Puntos: " + puntosParticipante + " | Puntos Extra: " + puntosExtras);
+			    	}
+	
+					System.out.println("Puntos Totales: " + GestorCompetencia.puntosTotales(puntosPorParticipante, nombre));
 		    }
 
 			System.out.println("\nGanador: " + GestorCompetencia.ganador(puntosPorParticipante));
