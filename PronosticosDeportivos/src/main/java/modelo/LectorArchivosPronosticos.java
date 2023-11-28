@@ -50,9 +50,6 @@ public class LectorArchivosPronosticos
 		            {
 		            	System.err.println(e.getMessage());
 		            }
-		            
-		                
-
 			    } 
 		    }
 		  	catch (IOException e) 
@@ -60,7 +57,6 @@ public class LectorArchivosPronosticos
 		        e.printStackTrace();
 		    } 
 
-	       
 		  this.LineasArchivoPronostico=listPronostico;
 	        
 	}
@@ -74,7 +70,6 @@ public class LectorArchivosPronosticos
 			// obtener string true or false  de los sig 3 valores y convertirlos a  boolean
 			try 
 			{
-				
 				boolean gana=parseValorBoolean(pronosticoIndividual.getGana1());
 				boolean gana2=parseValorBoolean(pronosticoIndividual.getGana2());
 				boolean empata=parseValorBoolean(pronosticoIndividual.getEmpata());
@@ -90,7 +85,7 @@ public class LectorArchivosPronosticos
 				
 				Pronostico pronostico= new Pronostico();
 				
-			//	Boolean.parseBoolean(pronostico.getEmpata());
+				//	Boolean.parseBoolean(pronostico.getEmpata());
 				
 				//del archivo de pronosticos saco el nombre del equipo y lo agrego al obj equipo correspondiente
 				equipo1.setNombre(pronosticoIndividual.getEquipo1());
@@ -103,7 +98,7 @@ public class LectorArchivosPronosticos
 				//settear partido
 				pronostico.setPartido(partido);
 				pronostico.setParticipante(pronosticoIndividual.getParticipante());
-			//	ResultadoEnum resultado = part.resultado(equipo1);
+				//	ResultadoEnum resultado = part.resultado(equipo1);
 						
 				
 				if (gana) // si gana1 es true entonces el equipo seleccinado por la persona es el uno y el resultado es Ganador

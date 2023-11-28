@@ -3,10 +3,9 @@ package modelo;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import java.util.List;
-
 import com.opencsv.bean.CsvToBeanBuilder;
+
 public class LectorArchivosResultado 
 {
 	String rutaArchivoResultado;
@@ -50,19 +49,12 @@ public class LectorArchivosResultado
 		            {
 		            	System.err.println(e.getMessage());
 		            }
-		            
-		                
-
 			    } 
-
-	        } 
-		  	catch (IOException e) 
+	        } catch (IOException e) 
 		    {
-	        e.printStackTrace();
-	        
+	        	e.printStackTrace();
 		    }
-		  this.LineasArchivoResultado=listResultado;
-	        
+		  this.LineasArchivoResultado = listResultado;
 	}
 	
 	public ArrayList<Partido> agregarObjPartido (List<ArchivoResultado> listaPartidos)
@@ -77,42 +69,41 @@ public class LectorArchivosResultado
 				cantGoles1 = Integer.parseInt(partidoIndividual.getCantGoles1());
 				cantGoles2 = Integer.parseInt(partidoIndividual.getCantGoles2());
 				
-			//boolean gana=Boolean.parseBoolean(pronostico1.getGana1());
-			int nroRonda = Integer.parseInt(partidoIndividual.getNroRonda());
-			String fase = partidoIndividual.getFase();
-			
-			//inicializamos
-			Equipo equipo1 = new Equipo();
-			Equipo equipo2 = new Equipo();
-			Partido partido = new Partido();
-			//seteamos nombre
-			equipo1.setNombre(partidoIndividual.getEquipo1());
-			equipo2.setNombre(partidoIndividual.getEquipo2());
-			
-			//setteamos equipos y goles
-			partido.setEquipo1(equipo1);
-			partido.setEquipo2(equipo2);
-			
-			partido.setGolesEquipo1(cantGoles1);
-			partido.setGolesEquipo2(cantGoles2);
-			
-			partido.setNroRonda(nroRonda);
-			partido.setFase(seleccionarFase(fase));
-			
-			partidosFinal.add(partido);		
-		
+				//boolean gana=Boolean.parseBoolean(pronostico1.getGana1());
+				int nroRonda = Integer.parseInt(partidoIndividual.getNroRonda());
+				String fase = partidoIndividual.getFase();
+				
+				//inicializamos
+				Equipo equipo1 = new Equipo();
+				Equipo equipo2 = new Equipo();
+				Partido partido = new Partido();
+				//seteamos nombre
+				equipo1.setNombre(partidoIndividual.getEquipo1());
+				equipo2.setNombre(partidoIndividual.getEquipo2());
+				
+				//setteamos equipos y goles
+				partido.setEquipo1(equipo1);
+				partido.setEquipo2(equipo2);
+				
+				partido.setGolesEquipo1(cantGoles1);
+				partido.setGolesEquipo2(cantGoles2);
+				
+				partido.setNroRonda(nroRonda);
+				partido.setFase(seleccionarFase(fase));
+				
+				partidosFinal.add(partido);		
 			} 
 			catch (NumberFormatException e) 
 			{
-			System.err.println("Error en los goles ingresados, uno o ambos no son numeros enteros. \n" + e.getMessage());
+				System.err.println("Error en los goles ingresados, uno o ambos no son numeros enteros. \n" + e.getMessage());
 			}
-			catch (NullPointerException e) {
-				System.err.println("Uno de los argumentos es nulo. \n"+ e.getMessage());
+			catch (NullPointerException e) 
+			{
+				System.err.println("Uno de los argumentos es nulo. \n" + e.getMessage());
 			}
 		}
 		return partidosFinal; // devolvemos lista de partidos
 	}
-	
 	
 	private  static int contarColumnas(ArchivoResultado resultado)
 	{

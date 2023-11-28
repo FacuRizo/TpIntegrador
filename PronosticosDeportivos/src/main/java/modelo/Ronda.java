@@ -63,7 +63,6 @@ public class Ronda
 	        return aciertos;
 	}
 
-	
 	public boolean aciertosBool(ArrayList<Pronostico> listaPronostico, String nomParticipante)
 	{
 		int aciertos = aciertos(listaPronostico, nomParticipante);

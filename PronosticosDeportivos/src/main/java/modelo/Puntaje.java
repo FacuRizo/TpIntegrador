@@ -1,24 +1,11 @@
 package modelo;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Puntaje {
-
+	@Getter @Setter
 	private static int puntaje;
+	@Getter @Setter
 	private static int puntajeExtra;
-
-	public static int getPuntaje() {
-		return puntaje;
-	}
-
-	public static int getPuntajeExtra() {
-		return puntajeExtra;
-	}
-
-	public static void setPuntaje(int puntaje) {
-		Puntaje.puntaje = puntaje;
-	}
-
-	public static void setPuntajeExtra(int puntajeExtra) {
-		Puntaje.puntajeExtra = puntajeExtra;
-	}
-	
 }

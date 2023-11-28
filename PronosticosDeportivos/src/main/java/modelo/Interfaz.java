@@ -1,6 +1,5 @@
 package modelo;
 
-
 import java.util.ArrayList;
 
 import java.util.Map;
@@ -120,8 +119,7 @@ public class Interfaz
 	   public void menuRondas(ArrayList<Ronda> listaRonda, ArrayList<Pronostico> listaPronostico)
 	   {
 		   System.out.println("RONDAS:");
-		   // System.out.printf("%-35s\n", "Partido");
-		   
+		
 		   int cont = 0;
 		   
 		   for (Ronda rondaIndividual : listaRonda) 

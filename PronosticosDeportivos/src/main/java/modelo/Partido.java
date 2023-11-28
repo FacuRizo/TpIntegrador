@@ -39,7 +39,6 @@ public class Partido
 	}
 	
 	private String comparar ()
-	
 	{
 		
 		 String equipoGanador = "";
@@ -57,7 +56,5 @@ public class Partido
 				equipoGanador=this.equipo2.getNombre();
 			}
 		return equipoGanador;
-		
-		
 	}
 }

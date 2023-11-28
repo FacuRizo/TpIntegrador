@@ -3,8 +3,6 @@ package modelo;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class SistemaPronostico 
 
 {
@@ -20,8 +18,6 @@ public class SistemaPronostico
 		if(eleccion == 1) 
 		{
 			this.lectorCSV(args);// LEER CON CSV
-		
-		
 		}
 		else if (eleccion == 2) 
 		{
@@ -31,7 +27,6 @@ public class SistemaPronostico
 		interfaz.menu(rondaOrdenada, partidosFinal, pronosticoFinal, rondaFinal,faseOrdenada);
 	}
 	
-
 	private void lectorCSV(String[] args)	
 	{
 		String archivoPartido= args[0];

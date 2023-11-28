@@ -54,10 +54,7 @@ public class InterfazSeleccion
 		 {
 			 throw new IllegalArgumentException("Opción inválida. Por favor, seleccione 1 para CSV o 2 para SQL.");
 		 }
-		 
 		 return eleccion;
-
-
 	}
 
 }
