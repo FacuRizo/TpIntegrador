@@ -8,13 +8,14 @@ public class Inicio
 		/*
 		 *  INTERFAZ POR CONSOLA
 		 */
-		// InterfazSeleccion interfaz=new InterfazSeleccion();
+		
+		// InterfazSeleccion interfaz = new InterfazSeleccion();
 		// interfaz.menuSeleccion(args);
 		
 		/*
 		 * INTERFAZ GRAFICA
 		 */
 		
-		InterfazGUIs.main(args);
+		InterfazGUI.main(args);
 	}
 }

@@ -19,7 +19,7 @@ public class SistemaPronostico
 	private ArrayList<Fase> faseOrdenada = new ArrayList<Fase>();
 	private Interfaz interfaz = new Interfaz();
 	
-	public void sistemaInicio (String[] args, int eleccion)
+	public void sistemaInicio (String[] args, int eleccion, boolean consola)
 	{
 		if(eleccion == 1) 
 		{
@@ -30,7 +30,10 @@ public class SistemaPronostico
 			this.lectorSQL();  // LEER CON SQL
 		}
 		rondayFasesOrdenada(); // agregar uso de fase
-		//interfaz.menu(rondaOrdenada, partidosFinal, pronosticoFinal, rondaFinal,faseOrdenada);
+		
+		if(consola) {
+			interfaz.menu(rondaOrdenada, partidosFinal, pronosticoFinal, rondaFinal,faseOrdenada);
+		}
 
 	}
 	
@@ -76,6 +79,4 @@ public class SistemaPronostico
 		rondaOrdenada = GestorCompetencia.crearRondas(partidosFinal);
 		faseOrdenada = GestorCompetencia.crearFases(rondaOrdenada);
 	}
-
-
 }

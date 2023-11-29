@@ -64,7 +64,6 @@ public class InterfazGUI extends JFrame
 	 */
 	public InterfazGUI(String args[]) {
 		
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		setLocationRelativeTo(null);
@@ -101,11 +100,13 @@ public class InterfazGUI extends JFrame
 		contentPane.add(inputPuntosExtras);
 		
 		JRadioButton rdbtnCSV = new JRadioButton("CSV");
+		rdbtnCSV.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		radioButtons.add(rdbtnCSV);
 		rdbtnCSV.setBounds(386, 80, 56, 23);
 		contentPane.add(rdbtnCSV);
 		
 		JRadioButton rdbtnSQL = new JRadioButton("SQL");
+		rdbtnSQL.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		radioButtons.add(rdbtnSQL);
 		rdbtnSQL.setBounds(444, 80, 56, 23);
 		contentPane.add(rdbtnSQL);
@@ -116,68 +117,73 @@ public class InterfazGUI extends JFrame
 		contentPane.add(lblLectura);
 		
 		JButton btnStart = new JButton("Comenzar");
+		btnStart.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnStart.setBounds(339, 191, 103, 28);
 		contentPane.add(btnStart);
 		//
 		GanadorTabla = new JTable();
 		GanadorTabla.setEnabled(false);
-		GanadorTabla.setBounds(31, 230, 510, 118);
+		GanadorTabla.setBounds(105, 255, 510, 118);
 		contentPane.add(GanadorTabla);
 		
-		JLabel lblGanador = new JLabel("Ganador");
-		lblGanador.setBounds(31, 363, 72, 14);
+		JLabel lblGanador = new JLabel("Ganador:");
+		lblGanador.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblGanador.setBounds(105, 398, 70, 14);
 		contentPane.add(lblGanador);
 		
 		GanadorField = new JTextField();
-		GanadorField.setBounds(91, 359, 86, 20);
+		GanadorField.setEditable(false);
+		GanadorField.setBounds(177, 393, 145, 28);
 		contentPane.add(GanadorField);
 		GanadorField.setColumns(10);
 		
 
         btnFase = new JButton("Fases");
         btnFase.setEnabled(false);
-        btnFase.setBounds(551, 230, 89, 23);
+        btnFase.setBounds(625, 255, 89, 23);
         contentPane.add(btnFase);
 
         btnRondas = new JButton("Rondas");
         btnRondas.setEnabled(false);
-        btnRondas.setBounds(551, 264, 89, 23);
+        btnRondas.setBounds(625, 289, 89, 23);
         contentPane.add(btnRondas);
 
         btnPartidos = new JButton("Partidos");
         btnPartidos.setEnabled(false);
-        btnPartidos.setBounds(551, 298, 89, 23);
+        btnPartidos.setBounds(625, 323, 89, 23);
         contentPane.add(btnPartidos);
 
         btnPronosticos = new JButton("Pronosticos");
         btnPronosticos.setEnabled(false);
-        btnPronosticos.setBounds(551, 332, 89, 23);
+        btnPronosticos.setBounds(625, 357, 89, 23);
         contentPane.add(btnPronosticos);
 
 		btnStart.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				
-				int puntaje = Integer.parseInt(inputPuntos.getText());
-				int puntajeExtra = Integer.parseInt(inputPuntosExtras.getText());
-				
-				Puntaje.setPuntaje(puntaje);
-				Puntaje.setPuntajeExtra(puntajeExtra);
-				
-				if(rdbtnSQL.isSelected()) {
-					sistemaPronostico.sistemaInicio(args, 2);
-				//	mostrarResultadoDummy(GanadorTabla, lblGanador, GanadorField);
-					activarBotones();
-
-					mostrarResultado(GanadorTabla, lblGanador, GanadorField);
-				} else if(rdbtnCSV.isSelected()) {
-					sistemaPronostico.sistemaInicio(args, 1);
-					//mostrarResultadoDummy(GanadorTabla, lblGanador, GanadorField);
-					activarBotones();
-
-					mostrarResultado(GanadorTabla, lblGanador, GanadorField);
-
+				try {
+					int puntaje = Integer.parseInt(inputPuntos.getText());
+					int puntajeExtra = Integer.parseInt(inputPuntosExtras.getText());
+					
+					Puntaje.setPuntaje(puntaje);
+					Puntaje.setPuntajeExtra(puntajeExtra);
+					
+					if(rdbtnSQL.isSelected()) {
+						sistemaPronostico.sistemaInicio(args, 2, false);
+						//	mostrarResultadoDummy(GanadorTabla, lblGanador, GanadorField);
+						activarBotones();
+						mostrarResultado(GanadorTabla, lblGanador, GanadorField);
+						
+					} else if(rdbtnCSV.isSelected()) {
+						sistemaPronostico.sistemaInicio(args, 1, false);
+						//mostrarResultadoDummy(GanadorTabla, lblGanador, GanadorField);
+						activarBotones();
+						mostrarResultado(GanadorTabla, lblGanador, GanadorField);
+					}
+					
+				} catch(NumberFormatException e1) {
+					System.err.println(e1);
 				}
 				
 			}
@@ -251,7 +257,7 @@ public class InterfazGUI extends JFrame
 	    table.repaint();
 
 	    JScrollPane scrollPane = new JScrollPane(table);
-	    scrollPane.setBounds(31, 230, 510, 118);
+	    scrollPane.setBounds(105, 255, 510, 118);
 	    contentPane.add(scrollPane);
 
 	    contentPane.revalidate();
@@ -261,30 +267,6 @@ public class InterfazGUI extends JFrame
 	    ganadorField.setText(ganador);
 	}
 	
-/*	private void mostrarResultadoDummy(JTable table, JLabel ganadorLabel, JTextField ganadorField) 
-	{
-	    String ganador = "Dummy Winner"; 
-	    DefaultTableModel tableModel = new DefaultTableModel();
-	    
-	    tableModel.addColumn("Nombre");
-	    tableModel.addColumn("Puntos Totales");
-
-	    tableModel.addRow(new Object[]{"Player1", 100});
-	    tableModel.addRow(new Object[]{"Player2", 85});
-	    tableModel.addRow(new Object[]{"Player3", 120});
-
-	    table.setModel(tableModel);
-	    table.repaint();
-
-	    JScrollPane scrollPane = new JScrollPane(table);
-	    scrollPane.setBounds(31, 230, 510, 118);
-	    contentPane.add(scrollPane);	    
-	    contentPane.revalidate();
-	    contentPane.repaint();
-
-	    ganadorField.setText(ganador);
-	}
-	*/
 	private void mostrarRondas()
 	{
 		
@@ -390,10 +372,6 @@ public class InterfazGUI extends JFrame
 	    partidosFrame.getContentPane().add(partidosScrollPane);
 	    partidosFrame.setVisible(true);
 	}
-
-		
-			   
-			 
 
 	private void mostrarFases() 
 	{

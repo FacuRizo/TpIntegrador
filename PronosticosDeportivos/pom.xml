@@ -2,10 +2,9 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>Grupo4</groupId>
   <artifactId>PronosticosDeportivos</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1</version>
   
   <build>
-	  
 	  <plugins>
 		  <plugin>
 			  <groupId>org.apache.maven.plugins</groupId>
@@ -19,7 +18,7 @@
             <configuration>
                 <archive>
                     <manifest>
-                        <mainClass>main.Inicio</mainClass>
+                        <mainClass>modelo.Inicio</mainClass>
                     </manifest>
                 </archive>
             </configuration>
@@ -37,31 +36,32 @@
 </plugin>
 	  </plugins>
   </build>
-  	  	<properties>
-    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		</properties>
-  	  <dependencies>
-
+  <properties>
+	  
+   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  <dependencies>
         <dependency>
             <groupId>com.opencsv</groupId>
             <artifactId>opencsv</artifactId>
-            <version>5.5.2</version>
+            <version>5.5.1</version>
         </dependency>
-
-		  <dependency>
-			  <groupId>junit</groupId>
-			  <artifactId>junit</artifactId>
-			  <version>4.12</version>
-		  </dependency>
-		  
-		  <dependency>
+        
+		<dependency>
+			 <groupId>junit</groupId>
+			 <artifactId>junit</artifactId>
+			 <version>4.12</version>
+		 </dependency>
+		 
+		 <dependency>
 		        <groupId>org.junit.jupiter</groupId>
 		        <artifactId>junit-jupiter-api</artifactId>
 		        <version>5.8.2</version>
 		        <scope>test</scope>
-    		</dependency>
-    		
-		  <dependency>
+    	 </dependency>
+    	
+		 <dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.18.30</version>
@@ -69,10 +69,10 @@
 		  </dependency>
 		  
 		  <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <version>8.0.32</version>
-       	 </dependency>
+    		<groupId>mysql</groupId>
+    		<artifactId>mysql-connector-java</artifactId>
+    		<version>8.0.27</version> <!-- Utiliza la versión correspondiente -->
+		</dependency>
 		  
 	  </dependencies>
 </project>

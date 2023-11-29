@@ -22,7 +22,8 @@ public class InterfazSeleccion
 		this.eleccionLectura(scanner, args);
 		
 		scanner.close();
-		sistemaPronostico.sistemaInicio(args, eleccion);
+		sistemaPronostico.sistemaInicio(args, eleccion, true);
+		
 		}
 		catch (NoSuchElementException e)
 		{
