@@ -1,4 +1,7 @@
 package modelo;
+/*
+ *  Excepcion dada en caso de columnas incorrectas
+ */
 
 public class ColumnasIncorrectasException extends Exception 
 	{

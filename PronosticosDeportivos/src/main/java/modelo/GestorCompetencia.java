@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GestorCompetencia {
+public class GestorCompetencia 
+{
 
+	/*
+	 *  Metodo que se ocupa de crear fases a partir de una lista ordenada de rondas
+	 */
 	public static ArrayList<Fase> crearFases (ArrayList<Ronda> rondaFinal)
 	{
 			Map<FaseEnum, Fase> faseHash =new HashMap<>();
@@ -30,7 +34,9 @@ public class GestorCompetencia {
 			ArrayList<Fase> faseFinal = new ArrayList<>(faseHash.values());
 			return faseFinal;
 	}
-	
+	/*
+	 *  Metodo que se ocupa de crear rondas a partir de una lista de partidos
+	 */	
 	public static  ArrayList<Ronda> crearRondas(ArrayList<Partido> partidoFinal)
 	{
 		Map<Integer, Ronda> rondaHash =new HashMap<>();
@@ -111,7 +117,9 @@ public class GestorCompetencia {
 		    }
 		    return puntosPorParticipante;	
 	}
-	
+	/*
+	 * Calculo de puntaje extra de rondas
+	 */	
 	private static int puntajeExtraRonda (int cantDeAcertadas, Ronda rondaIndividual){
 		int puntosExtra = Puntaje.getPuntajeExtra();
 		if (cantDeAcertadas == rondaIndividual.getListaPartidos().size())
@@ -120,11 +128,14 @@ public class GestorCompetencia {
 		}
 		return 0;
 	}
+	/*
+	 * Hashmap  de pronosticos
+	 */
 
-	public static Map<String, ArrayList<Pronostico>> listaPronosticoHash (ArrayList<Pronostico> partidoFinal)
+	public static Map<String, ArrayList<Pronostico>> listaPronosticoHash (ArrayList<Pronostico> pronosticoFinal)
 	{
 		Map<String, ArrayList<Pronostico> > pronosticoHash =new HashMap<>();
-		for (Pronostico pronosticoIndividual : partidoFinal) 
+		for (Pronostico pronosticoIndividual : pronosticoFinal) 
 		{
 			String nombre= pronosticoIndividual.getParticipante();
 			if (pronosticoHash.containsKey(nombre)) 
@@ -140,7 +151,10 @@ public class GestorCompetencia {
 		}
 		return pronosticoHash;
 	}
-
+	
+	/*
+	 *  Metodo que calcula los puntos totales de  cada participante
+	 */
 	public static int puntosTotales(Map<String, ArrayList<ArrayList<Integer>>> puntosPorParticipante, String nombreParticipante)
 	{
 		int puntosTotales = 0;
@@ -152,7 +166,9 @@ public class GestorCompetencia {
 		}
 		return puntosTotales;
 	}
-
+	/*
+	 * Metodo que se ocupa de seleccionar al ganador  tomando el hashmap de puntos por panticipante
+	 */
 	public static String ganador(Map<String, ArrayList<ArrayList<Integer>>> puntosPorParticipante)
 	{
 		String ganador = "";

@@ -2,8 +2,11 @@ package modelo;
 
 import lombok.Getter;
 import lombok.Setter;
-
-public class Puntaje {
+/*
+ *  
+ */
+public class Puntaje 
+{
 	@Getter @Setter
 	private static int puntaje;
 	@Getter @Setter

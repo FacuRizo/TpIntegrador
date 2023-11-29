@@ -5,11 +5,16 @@ public class Inicio
 {
 	public static void main(String[] args) 
 	{
-		// INTERFAZ POR CONSOLA
+		/*
+		 *  INTERFAZ POR CONSOLA
+		 */
 		// InterfazSeleccion interfaz=new InterfazSeleccion();
 		// interfaz.menuSeleccion(args);
 		
-		// INTERFAZ GRAFICA
+		/*
+		 * INTERFAZ GRAFICA
+		 */
+		
 		InterfazGUIs.main(args);
 	}
 }

@@ -6,6 +6,9 @@ import lombok.Setter;
 @Getter @Setter
 public class Equipo 
 {
+	/*
+	 *  nombre, descripcion
+	 */
 	private String nombre;
 	private String descripcion;
 	

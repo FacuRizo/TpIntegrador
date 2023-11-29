@@ -32,7 +32,9 @@ public class Interfaz
 		    this.menuPuntaje(rondaOrdenada, listaPronostico, faseOrdenada);
 		    
 	   }
-	  
+	   /*
+	    *  Recorre lista fases e imprime en pantalla
+	    */	  
 	   private void menuFases(ArrayList<Fase> faseOrdenada)
 	   {
 		   System.out.println("FASES: \n");
@@ -48,7 +50,11 @@ public class Interfaz
 		   }
 		
 	   }
-
+	   
+	   /*
+	    *  Usando la lista ordenada de rondas, la lista de pronosticos y la lista ordenada de fases
+	    *  muestra el puntaje total y el ganador
+	    */
 	public void menuPuntaje(ArrayList<Ronda> rondaOrdenada, ArrayList<Pronostico> listaPronostico, ArrayList<Fase> faseFinal)
 	   {
 		   Map<String, ArrayList<Pronostico>> pronosticoHash = GestorCompetencia.listaPronosticoHash(listaPronostico);	
@@ -76,6 +82,9 @@ public class Interfaz
 			System.out.println("\nGanador: " + GestorCompetencia.ganador(puntosPorParticipante));
 	   }
 	   
+		/*
+		 *  Recorre la lista de partidos y las imprime en pantalla
+		 */
 	   public void menuPartidos(ArrayList<Partido> listaPartido)
 	   {
 		    System.out.println("PARTIDOS: \n");
@@ -93,7 +102,9 @@ public class Interfaz
 	            System.out.printf("%-15s%-8d%-8d%-15s%-15s\n", equipo1, goles1, goles2, equipo2, fase);
 	        }
 	   }
-	   
+	   /*
+	    * Recorre la lista de pronosticos y las imprime en pantalla
+	    */
 	   public void MenuPronostico (ArrayList<Pronostico> listaPronostico)
 	   {
 		   System.out.println("PRONOSTICOS: \n");
@@ -112,17 +123,19 @@ public class Interfaz
 	            System.out.printf("%-35s%-27s%-27s%-27s\n", part1Nombre+ " vs " + part2Nombre , equipoNombre, res , persona);
 	        }
 	   }
-	   
+	   /*
+	    * Recorre la lista de rondas y las imprime en pantalla
+	    */
 	   public void menuRondas(ArrayList<Ronda> listaRonda, ArrayList<Pronostico> listaPronostico)
 	   {
 		   System.out.println("RONDAS:");
 		
-		   int cont = 0;
+
 		   
 		   for (Ronda rondaIndividual : listaRonda) 
 		   {
-			   cont++;
-			   System.out.println("\n Ronda " + cont + ":");
+			   int nroRonda=rondaIndividual.getNro();
+			   System.out.println("\n Ronda " + nroRonda + ":");
 			   
 			   for (Partido partidoIndividual : rondaIndividual.getListaPartidos()) 
 			   {
@@ -130,13 +143,10 @@ public class Interfaz
 				   String part2Nombre= partidoIndividual.getEquipo2().getNombre();
 				   
 				   String partidoVS= partido1Nombre + " vs "+ part2Nombre;
-			   
-				   //int nro=(rondaIndividual.getNro());
-				   //int pto=rondaIndividual.puntosInd(listaPronostico, partidoIndividual);
+
 				   System.out.printf("%-35s\n", partidoVS);
 			   }
-			  // int ptoTotal=ronda.puntos(pronos);
-			  // System.out.println("Total :"+ Integer.toString(ptoTotal) );
+
 			   System.out.println("---------");
 		   }
 		}		    

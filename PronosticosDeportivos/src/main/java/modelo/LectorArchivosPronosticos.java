@@ -40,7 +40,7 @@ public class LectorArchivosPronosticos
 			    {
 		            try 
 		            {
-		                // Check if the number of columns in the current row is not equal to 6
+		       
 		                if (contarColumnas(pronostico) != 6) 
 		                {
 		                    throw new ColumnasIncorrectasException("EL CSV no tiene 6 columnas");
@@ -85,7 +85,7 @@ public class LectorArchivosPronosticos
 				
 				Pronostico pronostico= new Pronostico();
 				
-				//	Boolean.parseBoolean(pronostico.getEmpata());
+
 				
 				//del archivo de pronosticos saco el nombre del equipo y lo agrego al obj equipo correspondiente
 				equipo1.setNombre(pronosticoIndividual.getEquipo1());

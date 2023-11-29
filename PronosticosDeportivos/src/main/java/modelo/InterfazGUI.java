@@ -136,22 +136,22 @@ public class InterfazGUI extends JFrame
 
         btnFase = new JButton("Fases");
         btnFase.setEnabled(false);
-        btnFase.setBounds(551, 226, 89, 23);
+        btnFase.setBounds(551, 230, 89, 23);
         contentPane.add(btnFase);
 
         btnRondas = new JButton("Rondas");
         btnRondas.setEnabled(false);
-        btnRondas.setBounds(551, 260, 89, 23);
+        btnRondas.setBounds(551, 264, 89, 23);
         contentPane.add(btnRondas);
 
         btnPartidos = new JButton("Partidos");
         btnPartidos.setEnabled(false);
-        btnPartidos.setBounds(551, 294, 89, 23);
+        btnPartidos.setBounds(551, 298, 89, 23);
         contentPane.add(btnPartidos);
 
         btnPronosticos = new JButton("Pronosticos");
         btnPronosticos.setEnabled(false);
-        btnPronosticos.setBounds(551, 328, 89, 23);
+        btnPronosticos.setBounds(551, 332, 89, 23);
         contentPane.add(btnPronosticos);
 
 		btnStart.addActionListener(new ActionListener() 
@@ -167,7 +167,7 @@ public class InterfazGUI extends JFrame
 				
 				if(rdbtnSQL.isSelected()) {
 					sistemaPronostico.sistemaInicio(args, 2);
-					mostrarResultadoDummy(GanadorTabla, lblGanador, GanadorField);
+				//	mostrarResultadoDummy(GanadorTabla, lblGanador, GanadorField);
 					activarBotones();
 
 					mostrarResultado(GanadorTabla, lblGanador, GanadorField);
@@ -228,12 +228,13 @@ public class InterfazGUI extends JFrame
 	}
 	
 	
-	private void mostrarResultado(JTable table, JLabel ganadorLabel, JTextField ganadorField) {
+	private void mostrarResultado(JTable table, JLabel ganadorLabel, JTextField ganadorField)
+	{
 	   
 	    String ganador = null;	  
 	    DefaultTableModel tableModel = new DefaultTableModel();
-	    Map<String, ArrayList<Pronostico>> pronosticoHash = GestorCompetencia.listaPronosticoHash(sistemaPronostico.pronosticoFinal);	
-		Map<String, ArrayList<ArrayList<Integer>>>  puntosPorParticipante = GestorCompetencia.puntosPartyAcertadas(pronosticoHash, sistemaPronostico.rondaOrdenada, sistemaPronostico.faseOrdenada); 
+	    Map<String, ArrayList<Pronostico>> pronosticoHash = GestorCompetencia.listaPronosticoHash(sistemaPronostico.getPronosticoFinal());	
+		Map<String, ArrayList<ArrayList<Integer>>>  puntosPorParticipante = GestorCompetencia.puntosPartyAcertadas(pronosticoHash, sistemaPronostico.getRondaOrdenada(), sistemaPronostico.getFaseOrdenada()); 
 		
 		tableModel.addColumn("Participante");
 	    tableModel.addColumn("Puntos Totales");
@@ -260,7 +261,7 @@ public class InterfazGUI extends JFrame
 	    ganadorField.setText(ganador);
 	}
 	
-	private void mostrarResultadoDummy(JTable table, JLabel ganadorLabel, JTextField ganadorField) 
+/*	private void mostrarResultadoDummy(JTable table, JLabel ganadorLabel, JTextField ganadorField) 
 	{
 	    String ganador = "Dummy Winner"; 
 	    DefaultTableModel tableModel = new DefaultTableModel();
@@ -283,7 +284,7 @@ public class InterfazGUI extends JFrame
 
 	    ganadorField.setText(ganador);
 	}
-	
+	*/
 	private void mostrarRondas()
 	{
 		
@@ -296,8 +297,8 @@ public class InterfazGUI extends JFrame
 		    rondasTableModel.addColumn("Ronda");
 		    rondasTableModel.addColumn("Partido");
 
-		    ArrayList<Ronda> listaRonda = sistemaPronostico.rondaOrdenada;
-	
+		    ArrayList<Ronda> listaRonda = sistemaPronostico.getRondaOrdenada();
+		
 		    for (Ronda rondaIndividual : listaRonda) 
 		    {
 		    	
@@ -314,10 +315,15 @@ public class InterfazGUI extends JFrame
 		    }
 
 		    JTable rondasTable = new JTable(rondasTableModel);
+		  
 		    JScrollPane rondasScrollPane = new JScrollPane(rondasTable);
 		    rondasFrame.getContentPane().add(rondasScrollPane);
+		    rondasTable.setEnabled(false);
 		    rondasFrame.setVisible(true);
 	}
+	
+
+
 	
 	private void mostrarPronosticos()
 	{	
@@ -333,7 +339,7 @@ public class InterfazGUI extends JFrame
 		    pronosticosTableModel.addColumn("Resultado");
 		    pronosticosTableModel.addColumn("Participante");
 
-		    ArrayList<Pronostico> listaPronostico = sistemaPronostico.pronosticoFinal; 
+		    ArrayList<Pronostico> listaPronostico = sistemaPronostico.getPronosticoFinal(); 
 
 		    for (Pronostico pronosticoIndividual : listaPronostico) 
 		    {
@@ -346,6 +352,7 @@ public class InterfazGUI extends JFrame
 		    }
 
 		    JTable pronosticosTable = new JTable(pronosticosTableModel);
+		    pronosticosTable.setEnabled(false);
 		    JScrollPane pronosticosScrollPane = new JScrollPane(pronosticosTable);
 		    pronosticosFrame.getContentPane().add(pronosticosScrollPane);
 		    pronosticosFrame.setVisible(true);
@@ -365,7 +372,7 @@ public class InterfazGUI extends JFrame
 	    partidosTableModel.addColumn("Equipo 2");
 	    partidosTableModel.addColumn("Fase");
 
-	    ArrayList<Partido> listaPartido = sistemaPronostico.partidosFinal;
+	    ArrayList<Partido> listaPartido = sistemaPronostico.getPartidosFinal();
 	    
 	    for (Partido partidoIndividual : listaPartido) 
 	    {
@@ -378,6 +385,7 @@ public class InterfazGUI extends JFrame
 	    }
 	    
 	    JTable partidosTable = new JTable(partidosTableModel);
+	    partidosTable.setEnabled(false);
 	    JScrollPane partidosScrollPane = new JScrollPane(partidosTable);
 	    partidosFrame.getContentPane().add(partidosScrollPane);
 	    partidosFrame.setVisible(true);
@@ -398,7 +406,7 @@ public class InterfazGUI extends JFrame
 	    fasesTableModel.addColumn("Fase");
 	    fasesTableModel.addColumn("Ronda");
 
-	    ArrayList<Fase> faseOrdenada = GestorCompetencia.crearFases(sistemaPronostico.rondaOrdenada);
+	    ArrayList<Fase> faseOrdenada = GestorCompetencia.crearFases(sistemaPronostico.getRondaOrdenada());
 
 	    for (Fase fase : faseOrdenada) 
 	    {
@@ -411,6 +419,7 @@ public class InterfazGUI extends JFrame
 	    }
 
 	    fasesTable = new JTable(fasesTableModel);
+	    fasesTable.setEnabled(false);
 	    JScrollPane fasesScrollPane = new JScrollPane(fasesTable);
 	    fasesScrollPane.setBounds(31, 30, 510, 300); 
 	    fasesFrame.getContentPane().add(fasesScrollPane);

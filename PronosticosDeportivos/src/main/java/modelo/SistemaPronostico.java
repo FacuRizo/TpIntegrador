@@ -1,16 +1,22 @@
 package modelo;
 
 import java.util.ArrayList;
+
 import java.util.List;
+
+import lombok.Getter;
+
+@Getter
 
 public class SistemaPronostico 
 
 {
-	public ArrayList<Partido> partidosFinal=new ArrayList<Partido>(); 
-	public ArrayList<Pronostico> pronosticoFinal=new ArrayList<Pronostico>(); 
+	
+	private ArrayList<Partido> partidosFinal=new ArrayList<Partido>(); 
+	private ArrayList<Pronostico> pronosticoFinal=new ArrayList<Pronostico>(); 
 	private ArrayList<Ronda> rondaFinal=new ArrayList<Ronda>(); 		
-	public ArrayList<Ronda> rondaOrdenada= new ArrayList<Ronda>();	
-	public ArrayList<Fase> faseOrdenada = new ArrayList<Fase>();
+	private ArrayList<Ronda> rondaOrdenada= new ArrayList<Ronda>();	
+	private ArrayList<Fase> faseOrdenada = new ArrayList<Fase>();
 	private Interfaz interfaz = new Interfaz();
 	
 	public void sistemaInicio (String[] args, int eleccion)
@@ -24,7 +30,8 @@ public class SistemaPronostico
 			this.lectorSQL();  // LEER CON SQL
 		}
 		rondayFasesOrdenada(); // agregar uso de fase
-		interfaz.menu(rondaOrdenada, partidosFinal, pronosticoFinal, rondaFinal,faseOrdenada);
+		//interfaz.menu(rondaOrdenada, partidosFinal, pronosticoFinal, rondaFinal,faseOrdenada);
+
 	}
 	
 	private void lectorCSV(String[] args)	
@@ -69,4 +76,6 @@ public class SistemaPronostico
 		rondaOrdenada = GestorCompetencia.crearRondas(partidosFinal);
 		faseOrdenada = GestorCompetencia.crearFases(rondaOrdenada);
 	}
+
+
 }

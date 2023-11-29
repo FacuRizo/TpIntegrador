@@ -11,7 +11,10 @@ public class Pronostico
 	private ResultadoEnum resultado;
 	private String participante;
 	private int cantPuntos;
-
+	
+	/*
+	 *  Asignacion de puntos
+	 */
 	public int puntos(ResultadoEnum resReal)
 	{
 		if(resReal.equals(resultado))

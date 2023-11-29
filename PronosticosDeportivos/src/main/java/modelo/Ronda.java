@@ -7,6 +7,9 @@ import lombok.Setter;
 @Getter @Setter 
 public class Ronda 
 {
+	/*
+	 *  nro Ronda, ListaPartidos , nombreFase
+	 */
 
 	private int nro;
 	private ArrayList<Partido> listaPartidos;
@@ -38,9 +41,8 @@ public class Ronda
 	}
 	
 	/*
-	 *  calcula la cantidad de aciertos en una lista de pronosticos
+	 *  Calcula la cantidad de aciertos en una lista de pronosticos
 	 */
-
 	public int aciertos(ArrayList<Pronostico> listaPronostico, String nomParticipante) 
 	 {
 	        int aciertos = 0;
@@ -62,7 +64,9 @@ public class Ronda
 	        }
 	        return aciertos;
 	}
-
+	/*
+	 *  booleano de los aciertos
+	 */
 	public boolean aciertosBool(ArrayList<Pronostico> listaPronostico, String nomParticipante)
 	{
 		int aciertos = aciertos(listaPronostico, nomParticipante);

@@ -2,7 +2,9 @@ package modelo;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
-
+/*
+ *  Menu intermedio para consola
+ */
 public class InterfazSeleccion
 {
 	private int puntaje;

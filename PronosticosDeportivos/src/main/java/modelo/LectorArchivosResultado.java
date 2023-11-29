@@ -39,7 +39,7 @@ public class LectorArchivosResultado
 			    {
 		            try 
 		            {
-		                // Check if the number of columns in the current row is not equal to 6
+
 		                if (contarColumnas(resultado) != 5) 
 		                {
 		                    throw new ColumnasIncorrectasException("EL CSV no tiene 6 columnas");
