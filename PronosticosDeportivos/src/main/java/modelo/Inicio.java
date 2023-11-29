@@ -10,6 +10,6 @@ public class Inicio
 		// interfaz.menuSeleccion(args);
 		
 		// INTERFAZ GRAFICA
-		InterfazGUI.main(args);
+		InterfazGUIs.main(args);
 	}
 }

@@ -6,11 +6,11 @@ import java.util.List;
 public class SistemaPronostico 
 
 {
-	private ArrayList<Partido> partidosFinal=new ArrayList<Partido>(); 
+	public ArrayList<Partido> partidosFinal=new ArrayList<Partido>(); 
 	public ArrayList<Pronostico> pronosticoFinal=new ArrayList<Pronostico>(); 
 	private ArrayList<Ronda> rondaFinal=new ArrayList<Ronda>(); 		
 	public ArrayList<Ronda> rondaOrdenada= new ArrayList<Ronda>();	
-	private ArrayList<Fase> faseOrdenada = new ArrayList<Fase>();
+	public ArrayList<Fase> faseOrdenada = new ArrayList<Fase>();
 	private Interfaz interfaz = new Interfaz();
 	
 	public void sistemaInicio (String[] args, int eleccion)
@@ -29,10 +29,17 @@ public class SistemaPronostico
 	
 	private void lectorCSV(String[] args)	
 	{
-		String archivoPartido= args[0];
-		String archivoPronostico= args[1];
-		inicializarPartido(archivoPartido);
-		inicializarPronostico(archivoPronostico);
+		try
+		{
+			String archivoPartido= args[0];
+			String archivoPronostico= args[1];
+			inicializarPartido(archivoPartido);
+			inicializarPronostico(archivoPronostico);
+		}
+		 catch (ArrayIndexOutOfBoundsException e)
+		{
+			System.err.println("Argumentos insuficientes, Se esperaban 2");
+		}
 	}
 	
 	private void lectorSQL() 
