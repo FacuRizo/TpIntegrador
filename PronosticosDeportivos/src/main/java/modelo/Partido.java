@@ -16,8 +16,6 @@ public class Partido
 	private int nroRonda;
 	private FaseEnum fase;
 	
-
-
 	public boolean equals(Partido part)
 	{
 		if(this.equipo1.equals(part.getEquipo1()) && this.equipo2.equals(part.getEquipo2())) {
@@ -28,7 +26,7 @@ public class Partido
 	}
 	
 	/*
-	 *  devuelve el Resultado enum correspondiente del equipo
+	 *  Devuelve el Resultado enum correspondiente del equipo
 	 */	
 	public ResultadoEnum resultado (Equipo aEquipo)
 	{
@@ -42,7 +40,6 @@ public class Partido
 		}else {
 			resultadoFinal= ResultadoEnum.Perdedor;
 		}
-		//System.out.println(res);
 		return resultadoFinal;
 	}
 	
@@ -51,7 +48,6 @@ public class Partido
 	 */	
 	private String comparar ()
 	{
-		
 		 String equipoGanador = "";
 		
 			if (this.golesEquipo1>this.golesEquipo2)

@@ -2,38 +2,34 @@ package modelo;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+
 /*
- *  Menu intermedio para consola
+ *  Menu intermedio para consola (para seleccionar el tipo de lectura de archivos y el puntaje)
  */
-public class InterfazSeleccion
-{
+public class InterfazSeleccion{
+
 	private int puntaje;
 	private int puntajeExtra;
 	private int eleccion;
 	private SistemaPronostico sistemaPronostico =new SistemaPronostico();
 	
-	public void menuSeleccion(String[] args)
-	{
-		try 
-		{	
-		Scanner scanner = new Scanner(System.in);
-		
-		this.lecturaPuntaje(scanner);
-		this.eleccionLectura(scanner, args);
-		
-		scanner.close();
-		sistemaPronostico.sistemaInicio(args, eleccion, true);
-		
+	public void menuSeleccion(String[] args){
+		try {	
+			Scanner scanner = new Scanner(System.in);
+			
+			this.lecturaPuntaje(scanner);
+			this.eleccionLectura(scanner, args);
+			
+			scanner.close();
+			sistemaPronostico.sistemaInicio(args, eleccion, true);
 		}
-		catch (NoSuchElementException e)
-		{
+		catch (NoSuchElementException e){
 			System.err.println("Se esperaban 2 argumentos");
 			System.err.println(e);
 		}
 	}
 
-	private void lecturaPuntaje(Scanner scan) 
-	{
+	private void lecturaPuntaje(Scanner scan) {
 		System.out.println(" ");
 		
 		System.out.println("Ingrese la cantidad de puntos por acierto: ");
@@ -47,17 +43,14 @@ public class InterfazSeleccion
 		Puntaje.setPuntajeExtra(puntajeExtra);
 	}
 	
-	private int eleccionLectura(Scanner scan, String[] args) 
-	{
+	private int eleccionLectura(Scanner scan, String[] args) {
 		System.out.println("Leer archivos por: 1. CSV || 2. SQL");
 		
 		eleccion = scan.nextInt();
 		
-		 if (eleccion!=1 && eleccion!=2)
-		 {
-			 throw new IllegalArgumentException("Opción inválida. Por favor, seleccione 1 para CSV o 2 para SQL.");
-		 }
-		 return eleccion;
+		if (eleccion != 1 && eleccion != 2){
+			throw new IllegalArgumentException("Opción inválida. Por favor, seleccione 1 para CSV o 2 para SQL.");
+		}
+		return eleccion;
 	}
-
 }

@@ -4,23 +4,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GestorCompetencia 
-{
-
+public class GestorCompetencia{
 	/*
 	 *  Metodo que se ocupa de crear fases a partir de una lista ordenada de rondas
 	 */
-	public static ArrayList<Fase> crearFases (ArrayList<Ronda> rondaFinal)
-	{
+	public static ArrayList<Fase> crearFases (ArrayList<Ronda> rondaFinal){
 			Map<FaseEnum, Fase> faseHash =new HashMap<>();
 		
-			for (Ronda rondaIndividual : rondaFinal) 
-			{
+			for (Ronda rondaIndividual : rondaFinal) {
 				   FaseEnum nombreFase=rondaIndividual.getNombreFase();				
 				   Fase fase=faseHash.get(nombreFase);
 					
-					if (fase==null)
-					{
+					if (fase==null){
 						fase = new Fase();
 						fase.setNombreFase(nombreFase);
 						fase.setListaRonda(new ArrayList<>());
@@ -34,12 +29,12 @@ public class GestorCompetencia
 			ArrayList<Fase> faseFinal = new ArrayList<>(faseHash.values());
 			return faseFinal;
 	}
+
 	/*
 	 *  Metodo que se ocupa de crear rondas a partir de una lista de partidos
 	 */	
-	public static  ArrayList<Ronda> crearRondas(ArrayList<Partido> partidoFinal)
-	{
-		Map<Integer, Ronda> rondaHash =new HashMap<>();
+	public static  ArrayList<Ronda> crearRondas(ArrayList<Partido> partidoFinal){
+		Map<Integer, Ronda> rondaHash = new HashMap<>();
 	
 		for (Partido partidoIndividual : partidoFinal) 
 		{
@@ -61,89 +56,86 @@ public class GestorCompetencia
 		return rondaFinal;
 	}
 
-	public static Map<String, ArrayList<ArrayList<Integer>>> puntosPartyAcertadas (Map<String, ArrayList<Pronostico>> pronosticoHash, ArrayList<Ronda> listaRonda, ArrayList<Fase> faseFinal)
-	{
+	/*
+	 *  Metodo que se ocupa de calcular los puntos de cada participante y su cantidad de acertadas por ronda
+	 */
+	public static Map<String, ArrayList<ArrayList<Integer>>> puntosPartyAcertadas (Map<String, ArrayList<Pronostico>> pronosticoHash, ArrayList<Ronda> listaRonda, ArrayList<Fase> faseFinal){
 		Map<String, ArrayList<ArrayList<Integer>>> puntosPorParticipante = new HashMap<>();
-		 int nroRonda = 0;
-		    for (String nombre : pronosticoHash.keySet()) 
-		    {
+		int nroRonda = 0;
+
+		for (String nombre : pronosticoHash.keySet()) {
 		    	
-		        int puntosParticipante = 0;
-                int cantDeAcertadas = 0;
-                int puntosExtras = 0;
-                int puntosExtrasFase = 0;
+		    int puntosParticipante = 0;
+            int cantDeAcertadas = 0;
+            int puntosExtras = 0;
+            int puntosExtrasFase = 0;
 
-                ArrayList<ArrayList<Integer>> puntosPorRonda = new ArrayList<>();
+            ArrayList<ArrayList<Integer>> puntosPorRonda = new ArrayList<>();
 
-                for (Fase fase : faseFinal)
-                {
-					boolean bandera = false;
-					puntosExtrasFase = 0;
+            for (Fase fase : faseFinal){
+				boolean bandera = false;
+				puntosExtrasFase = 0;
 
-                    if (fase.aciertosFaseBool(pronosticoHash.get(nombre), nombre)) 
-                    {
-                        puntosExtrasFase = Puntaje.getPuntajeExtra(); 
+                if (fase.aciertosFaseBool(pronosticoHash.get(nombre), nombre)) {
+                    puntosExtrasFase = Puntaje.getPuntajeExtra(); 
+				}
+
+				for (Ronda rondaIndividual : fase.getListaRonda()) {
+					puntosParticipante = 0;
+					cantDeAcertadas = 0;
+					puntosExtras = 0;
+							
+					ArrayList<Integer> puntosPorRondaIndividual = new ArrayList<>();  
+							
+					puntosParticipante += rondaIndividual.puntos(pronosticoHash.get(nombre), nombre);
+					cantDeAcertadas += rondaIndividual.aciertos(pronosticoHash.get(nombre), nombre);
+					nroRonda = rondaIndividual.getNro();
+					puntosExtras = puntajeExtraRonda(cantDeAcertadas, rondaIndividual);
+							
+					puntosPorRondaIndividual.add(nroRonda);
+					puntosPorRondaIndividual.add(cantDeAcertadas);
+					puntosPorRondaIndividual.add(puntosParticipante);
+
+					if(!bandera){
+						puntosPorRondaIndividual.add(puntosExtras + puntosExtrasFase);
+						bandera = true;
+					}else{
+						puntosPorRondaIndividual.add(puntosExtras);
 					}
 
-					for (Ronda rondaIndividual : fase.getListaRonda()) 
-					{
-						puntosParticipante = 0;
-						cantDeAcertadas = 0;
-						puntosExtras = 0;
-							
-						ArrayList<Integer> puntosPorRondaIndividual = new ArrayList<>();  
-							
-						puntosParticipante += rondaIndividual.puntos(pronosticoHash.get(nombre), nombre);
-						cantDeAcertadas += rondaIndividual.aciertos(pronosticoHash.get(nombre), nombre);
-						nroRonda = rondaIndividual.getNro();
-						puntosExtras = puntajeExtraRonda(cantDeAcertadas, rondaIndividual);
-							
-						puntosPorRondaIndividual.add(nroRonda);
-						puntosPorRondaIndividual.add(cantDeAcertadas);
-						puntosPorRondaIndividual.add(puntosParticipante);
-
-						if(!bandera){
-							puntosPorRondaIndividual.add(puntosExtras + puntosExtrasFase);
-							bandera = true;
-						}else{
-							puntosPorRondaIndividual.add(puntosExtras);
-						}
-
-						puntosPorRonda.add(puntosPorRondaIndividual);
-					}
+					puntosPorRonda.add(puntosPorRondaIndividual);
+				}
 					
-					puntosPorParticipante.put(nombre, puntosPorRonda);
-				} 
-		    }
-		    return puntosPorParticipante;	
+				puntosPorParticipante.put(nombre, puntosPorRonda);
+			} 
+		}
+
+		return puntosPorParticipante;	
 	}
+
 	/*
 	 * Calculo de puntaje extra de rondas
 	 */	
 	private static int puntajeExtraRonda (int cantDeAcertadas, Ronda rondaIndividual){
 		int puntosExtra = Puntaje.getPuntajeExtra();
-		if (cantDeAcertadas == rondaIndividual.getListaPartidos().size())
-		{
+		if (cantDeAcertadas == rondaIndividual.getListaPartidos().size()){
 			return puntosExtra;
 		}
 		return 0;
 	}
-	/*
-	 * Hashmap  de pronosticos
-	 */
 
-	public static Map<String, ArrayList<Pronostico>> listaPronosticoHash (ArrayList<Pronostico> pronosticoFinal)
-	{
+	/*
+	 * Hashmap de pronosticos
+	 */
+	public static Map<String, ArrayList<Pronostico>> listaPronosticoHash (ArrayList<Pronostico> pronosticoFinal){
 		Map<String, ArrayList<Pronostico> > pronosticoHash =new HashMap<>();
-		for (Pronostico pronosticoIndividual : pronosticoFinal) 
-		{
+		for (Pronostico pronosticoIndividual : pronosticoFinal) {
 			String nombre= pronosticoIndividual.getParticipante();
-			if (pronosticoHash.containsKey(nombre)) 
-			{
+
+			if (pronosticoHash.containsKey(nombre)) {
 				pronosticoHash.get(nombre).add(pronosticoIndividual);
 			}
-			else
-			{
+			else{
 				ArrayList<Pronostico> pronosticolista = new ArrayList<Pronostico>();
 				pronosticolista.add(pronosticoIndividual);
 				pronosticoHash.put(nombre, pronosticolista);
@@ -155,27 +147,24 @@ public class GestorCompetencia
 	/*
 	 *  Metodo que calcula los puntos totales de  cada participante
 	 */
-	public static int puntosTotales(Map<String, ArrayList<ArrayList<Integer>>> puntosPorParticipante, String nombreParticipante)
-	{
+	public static int puntosTotales(Map<String, ArrayList<ArrayList<Integer>>> puntosPorParticipante, String nombreParticipante){
 		int puntosTotales = 0;
 		// Puntos Por Ronda = [nroRonda, cantDeAcertadas, puntosParticipante, puntosExtras]
-		for (ArrayList<Integer> puntosPorRonda : puntosPorParticipante.get(nombreParticipante)) 
-		{
+		for (ArrayList<Integer> puntosPorRonda : puntosPorParticipante.get(nombreParticipante)) {
 			puntosTotales += puntosPorRonda.get(2);
 			puntosTotales += puntosPorRonda.get(3);
 		}
 		return puntosTotales;
 	}
 	/*
-	 * Metodo que se ocupa de seleccionar al ganador  tomando el hashmap de puntos por panticipante
+	 * Metodo que se ocupa de seleccionar al ganador  tomando el hashmap de puntos por participante
 	 */
-	public static String ganador(Map<String, ArrayList<ArrayList<Integer>>> puntosPorParticipante)
-	{
+	public static String ganador(Map<String, ArrayList<ArrayList<Integer>>> puntosPorParticipante){
 		String ganador = "";
 		int puntosMax = 0;
-		for (String nombre : puntosPorParticipante.keySet()) 
-		{
+		for (String nombre : puntosPorParticipante.keySet()) {
 			int puntosTotales = puntosTotales(puntosPorParticipante, nombre);
+
 			if (puntosTotales > puntosMax)
 			{
 				puntosMax = puntosTotales;
@@ -185,4 +174,3 @@ public class GestorCompetencia
 		return ganador;
 	}
 }
-

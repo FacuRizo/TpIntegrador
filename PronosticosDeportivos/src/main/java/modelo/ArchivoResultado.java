@@ -1,14 +1,13 @@
 package modelo;
 
 import com.opencsv.bean.CsvBindByPosition;
-
-
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
 public class ArchivoResultado 
 {
+	// Asignacion de la lectura del archivo CSV de Resultados
 	@CsvBindByPosition(position= 0)
 	private String NroRonda;
 	@CsvBindByPosition(position= 1)

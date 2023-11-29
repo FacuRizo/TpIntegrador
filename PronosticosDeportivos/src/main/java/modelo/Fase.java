@@ -8,10 +8,11 @@ import lombok.Setter;
 public class Fase 
 {
 	/*
-	 * nombre Fase , Lista Rondas
+	 * Nombre de Fase, Lista de Rondas
 	 */
 	private FaseEnum nombreFase;
 	private ArrayList<Ronda> listaRonda;
+    
 	/*
 	 *  Devuelve true si se acertaron todas las rondas dentro de una fase 
 	 */

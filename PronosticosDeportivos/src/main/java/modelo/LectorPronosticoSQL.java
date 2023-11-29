@@ -66,8 +66,6 @@ public class LectorPronosticoSQL {
 				
 				pronosticoFinal.add(pronostico);
 			}
-			
-			
 		} catch (SQLException se) {
 			// Execpción ante problemas de conexión
 	        se.printStackTrace();
@@ -86,7 +84,6 @@ public class LectorPronosticoSQL {
 	                se.printStackTrace();
 	            }
 	    }
-		
 		return pronosticoFinal;
 	}
 }

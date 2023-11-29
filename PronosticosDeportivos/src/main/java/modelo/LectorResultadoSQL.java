@@ -72,7 +72,6 @@ public class LectorResultadoSQL {
 	                se.printStackTrace();
 	            }
 	    }
-		
 		return partidosFinal;
 	}
 	
@@ -86,7 +85,6 @@ public class LectorResultadoSQL {
 		} else {
 			faseRetornada = FaseEnum.Finales;
 		}
-		
 		return faseRetornada;
 	}
 }

@@ -6,14 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.opencsv.bean.CsvToBeanBuilder;
-public class LectorArchivosPronosticos
-{
+public class LectorArchivosPronosticos{
 
 	String rutaArchivoPronostico;
 	List<ArchivoPronostico> LineasArchivoPronostico;
 	
-	public LectorArchivosPronosticos (String rutaArchivoPronostico)
-	{
+	public LectorArchivosPronosticos (String rutaArchivoPronostico){
 		this.rutaArchivoPronostico=rutaArchivoPronostico;
 		LineasArchivoPronostico= new ArrayList<ArchivoPronostico>();
 	}
@@ -36,10 +34,8 @@ public class LectorArchivosPronosticos
 	                    .parse();
 
 			  	
-			    for (ArchivoPronostico pronostico : listPronostico) 
-			    {
-		            try 
-		            {
+			    for (ArchivoPronostico pronostico : listPronostico) {
+		            try {
 		       
 		                if (contarColumnas(pronostico) != 6) 
 		                {
@@ -57,19 +53,15 @@ public class LectorArchivosPronosticos
 		        e.printStackTrace();
 		    } 
 
-		  this.LineasArchivoPronostico=listPronostico;
-	        
+		  this.LineasArchivoPronostico=listPronostico;  
 	}
 	
-	public  ArrayList<Pronostico> agregarObjPronostico(List<ArchivoPronostico> Listapronosticos)
-	{
+	public  ArrayList<Pronostico> agregarObjPronostico(List<ArchivoPronostico> Listapronosticos){
 		ArrayList<Pronostico> pronosticoFinal=new ArrayList<Pronostico>(); 
 		
-		for (ArchivoPronostico pronosticoIndividual: Listapronosticos)
-		{
+		for (ArchivoPronostico pronosticoIndividual: Listapronosticos){
 			// obtener string true or false  de los sig 3 valores y convertirlos a  boolean
-			try 
-			{
+			try {
 				boolean gana=parseValorBoolean(pronosticoIndividual.getGana1());
 				boolean gana2=parseValorBoolean(pronosticoIndividual.getGana2());
 				boolean empata=parseValorBoolean(pronosticoIndividual.getEmpata());
@@ -85,8 +77,6 @@ public class LectorArchivosPronosticos
 				
 				Pronostico pronostico= new Pronostico();
 				
-
-				
 				//del archivo de pronosticos saco el nombre del equipo y lo agrego al obj equipo correspondiente
 				equipo1.setNombre(pronosticoIndividual.getEquipo1());
 				partido.setEquipo1(equipo1);
@@ -94,18 +84,14 @@ public class LectorArchivosPronosticos
 				equipo2.setNombre(pronosticoIndividual.getEquipo2());
 				partido.setEquipo2(equipo2);
 				
-				
 				//settear partido
 				pronostico.setPartido(partido);
 				pronostico.setParticipante(pronosticoIndividual.getParticipante());
 				//	ResultadoEnum resultado = part.resultado(equipo1);
 						
-				
-				if (gana) // si gana1 es true entonces el equipo seleccinado por la persona es el uno y el resultado es Ganador
-				{
+				if (gana){ // si gana1 es true entonces el equipo seleccinado por la persona es el uno y el resultado es Ganador
 					pronostico.setEquipo(equipo1);
 					pronostico.setResultado(ResultadoEnum.Ganador);
-					
 				}
 				else if (empata) //si empata es true entonces el equipo seleccinado por la persona no importa y el resultado es empate
 				{
@@ -154,5 +140,4 @@ public class LectorArchivosPronosticos
 
 		    return contador;
 	}
-	
 }

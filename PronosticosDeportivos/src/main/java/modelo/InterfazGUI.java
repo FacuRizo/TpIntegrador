@@ -19,12 +19,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.awt.event.ActionEvent;
 
 import javax.swing.ButtonGroup;
 
-public class InterfazGUI extends JFrame
-{
+public class InterfazGUI extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -33,7 +33,6 @@ public class InterfazGUI extends JFrame
 	private final ButtonGroup radioButtons = new ButtonGroup();
 	private SistemaPronostico sistemaPronostico = new SistemaPronostico();
 	
-
 	private JTable GanadorTabla;
 	private JTextField GanadorField;
 	private JButton btnFase;
@@ -120,7 +119,7 @@ public class InterfazGUI extends JFrame
 		btnStart.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnStart.setBounds(339, 191, 103, 28);
 		contentPane.add(btnStart);
-		//
+
 		GanadorTabla = new JTable();
 		GanadorTabla.setEnabled(false);
 		GanadorTabla.setBounds(105, 255, 510, 118);
@@ -137,25 +136,24 @@ public class InterfazGUI extends JFrame
 		contentPane.add(GanadorField);
 		GanadorField.setColumns(10);
 		
-
         btnFase = new JButton("Fases");
         btnFase.setEnabled(false);
-        btnFase.setBounds(625, 255, 89, 23);
+        btnFase.setBounds(625, 255, 103, 23);
         contentPane.add(btnFase);
 
         btnRondas = new JButton("Rondas");
         btnRondas.setEnabled(false);
-        btnRondas.setBounds(625, 289, 89, 23);
+        btnRondas.setBounds(625, 289, 103, 23);
         contentPane.add(btnRondas);
 
         btnPartidos = new JButton("Partidos");
         btnPartidos.setEnabled(false);
-        btnPartidos.setBounds(625, 323, 89, 23);
+        btnPartidos.setBounds(625, 323, 103, 23);
         contentPane.add(btnPartidos);
 
         btnPronosticos = new JButton("Pronosticos");
         btnPronosticos.setEnabled(false);
-        btnPronosticos.setBounds(625, 357, 89, 23);
+        btnPronosticos.setBounds(625, 357, 103, 23);
         contentPane.add(btnPronosticos);
 
 		btnStart.addActionListener(new ActionListener() 
@@ -171,71 +169,61 @@ public class InterfazGUI extends JFrame
 					
 					if(rdbtnSQL.isSelected()) {
 						sistemaPronostico.sistemaInicio(args, 2, false);
-						//	mostrarResultadoDummy(GanadorTabla, lblGanador, GanadorField);
 						activarBotones();
 						mostrarResultado(GanadorTabla, lblGanador, GanadorField);
 						
 					} else if(rdbtnCSV.isSelected()) {
-						sistemaPronostico.sistemaInicio(args, 1, false);
-						//mostrarResultadoDummy(GanadorTabla, lblGanador, GanadorField);
-						activarBotones();
-						mostrarResultado(GanadorTabla, lblGanador, GanadorField);
+						try{
+							sistemaPronostico.sistemaInicio(args, 1, false);
+							activarBotones();
+							mostrarResultado(GanadorTabla, lblGanador, GanadorField);
+
+						} catch (NoSuchElementException e2){
+							System.err.println("Se esperaban 2 argumentos");
+							System.err.println(e2);
+						}
 					}
-					
 				} catch(NumberFormatException e1) {
 					System.err.println(e1);
 				}
-				
 			}
 		}
 		);
 	}
 	
-	private void activarBotones() 
-	{
-		
+	private void activarBotones() {
+
 	    btnFase.setEnabled(true);
 	    btnRondas.setEnabled(true);
 	    btnPartidos.setEnabled(true);
 	    btnPronosticos.setEnabled(true);
 	    
-	    btnFase.addActionListener(new ActionListener() 
-	    {
-	        public void actionPerformed(ActionEvent e) 
-	        {
+	    btnFase.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
 	            mostrarFases();
 	        }
 	    });
 
-	   btnRondas.addActionListener(new ActionListener() 
-	   {
-	        public void actionPerformed(ActionEvent e)
-	        {
+	   btnRondas.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e){
 	            mostrarRondas();
 	        }
-
 	    });
 
-	    btnPartidos.addActionListener(new ActionListener()
-	    {
-	        public void actionPerformed(ActionEvent e)
-	        {
+	    btnPartidos.addActionListener(new ActionListener(){
+	        public void actionPerformed(ActionEvent e){
 	            mostrarPartidos();
 	        }
 	    });
 
-	    btnPronosticos.addActionListener(new ActionListener()
-	    {
-	        public void actionPerformed(ActionEvent e) 
-	        {
+	    btnPronosticos.addActionListener(new ActionListener(){
+	        public void actionPerformed(ActionEvent e) {
 	            mostrarPronosticos();
 	        }
 	    });
 	}
 	
-	
-	private void mostrarResultado(JTable table, JLabel ganadorLabel, JTextField ganadorField)
-	{
+	private void mostrarResultado(JTable table, JLabel ganadorLabel, JTextField ganadorField){
 	   
 	    String ganador = null;	  
 	    DefaultTableModel tableModel = new DefaultTableModel();
@@ -245,9 +233,7 @@ public class InterfazGUI extends JFrame
 		tableModel.addColumn("Participante");
 	    tableModel.addColumn("Puntos Totales");
 
-
-	    for (String nombre : puntosPorParticipante.keySet()) 
-	    {
+	    for (String nombre : puntosPorParticipante.keySet()) {
 	        int puntosTotales = GestorCompetencia.puntosTotales(puntosPorParticipante, nombre);
 
 	        tableModel.addRow(new Object[]{nombre, puntosTotales});
@@ -263,81 +249,73 @@ public class InterfazGUI extends JFrame
 	    contentPane.revalidate();
 	    contentPane.repaint();
 
-	    ganador =GestorCompetencia.ganador(puntosPorParticipante);
+	    ganador = GestorCompetencia.ganador(puntosPorParticipante);
 	    ganadorField.setText(ganador);
 	}
 	
-	private void mostrarRondas()
-	{
+	private void mostrarRondas(){
 		
-		    JFrame rondasFrame = new JFrame("Rondas");
-		    rondasFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		    rondasFrame.setBounds(100, 100, 600, 400);  
-		    rondasFrame.setLocationRelativeTo(null);
+		JFrame rondasFrame = new JFrame("Rondas");
+		rondasFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		rondasFrame.setBounds(100, 100, 600, 400);  
+		rondasFrame.setLocationRelativeTo(null);
 		  
-		    DefaultTableModel rondasTableModel = new DefaultTableModel();
-		    rondasTableModel.addColumn("Ronda");
-		    rondasTableModel.addColumn("Partido");
+		DefaultTableModel rondasTableModel = new DefaultTableModel();
+		rondasTableModel.addColumn("Ronda");
+		rondasTableModel.addColumn("Partido");
 
-		    ArrayList<Ronda> listaRonda = sistemaPronostico.getRondaOrdenada();
+		ArrayList<Ronda> listaRonda = sistemaPronostico.getRondaOrdenada();
 		
-		    for (Ronda rondaIndividual : listaRonda) 
-		    {
+		for (Ronda rondaIndividual : listaRonda) {
 		    	
-		    	int nroRonda = rondaIndividual.getNro();
-		        for (Partido partidoIndividual : rondaIndividual.getListaPartidos()) 
-		        {
-		            String partido1Nombre = partidoIndividual.getEquipo1().getNombre();
-		            String part2Nombre = partidoIndividual.getEquipo2().getNombre();
+		    int nroRonda = rondaIndividual.getNro();
+		    for (Partido partidoIndividual : rondaIndividual.getListaPartidos()) {
+		        String partido1Nombre = partidoIndividual.getEquipo1().getNombre();
+		        String part2Nombre = partidoIndividual.getEquipo2().getNombre();
 		            
-		            String partidoVS = partido1Nombre + " vs " + part2Nombre;
+		        String partidoVS = partido1Nombre + " vs " + part2Nombre;
 
-		            rondasTableModel.addRow(new Object[]{nroRonda, partidoVS});
-		        }
+		        rondasTableModel.addRow(new Object[]{nroRonda, partidoVS});
 		    }
+		}
 
-		    JTable rondasTable = new JTable(rondasTableModel);
+		JTable rondasTable = new JTable(rondasTableModel);
 		  
-		    JScrollPane rondasScrollPane = new JScrollPane(rondasTable);
-		    rondasFrame.getContentPane().add(rondasScrollPane);
-		    rondasTable.setEnabled(false);
-		    rondasFrame.setVisible(true);
+		JScrollPane rondasScrollPane = new JScrollPane(rondasTable);
+		rondasFrame.getContentPane().add(rondasScrollPane);
+		rondasTable.setEnabled(false);
+		rondasFrame.setVisible(true);
 	}
 	
-
-
+	private void mostrarPronosticos(){	
 	
-	private void mostrarPronosticos()
-	{	
-		
-		    JFrame pronosticosFrame = new JFrame("Pronosticos");
-		    pronosticosFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		    pronosticosFrame.setBounds(100, 100, 800, 600);  
-		    pronosticosFrame.setLocationRelativeTo(null);
+		JFrame pronosticosFrame = new JFrame("Pronosticos");
+		pronosticosFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		pronosticosFrame.setBounds(100, 100, 800, 600);  
+		pronosticosFrame.setLocationRelativeTo(null);
 	
-		    DefaultTableModel pronosticosTableModel = new DefaultTableModel();
-		    pronosticosTableModel.addColumn("Partido");
-		    pronosticosTableModel.addColumn("Equipo Seleccionado");
-		    pronosticosTableModel.addColumn("Resultado");
-		    pronosticosTableModel.addColumn("Participante");
+		DefaultTableModel pronosticosTableModel = new DefaultTableModel();
+		pronosticosTableModel.addColumn("Partido");
+		pronosticosTableModel.addColumn("Equipo Seleccionado");
+		pronosticosTableModel.addColumn("Resultado");
+		pronosticosTableModel.addColumn("Participante");
 
-		    ArrayList<Pronostico> listaPronostico = sistemaPronostico.getPronosticoFinal(); 
+		ArrayList<Pronostico> listaPronostico = sistemaPronostico.getPronosticoFinal(); 
 
-		    for (Pronostico pronosticoIndividual : listaPronostico) 
-		    {
-		        String part1Nombre = pronosticoIndividual.getPartido().getEquipo1().getNombre();
-		        String part2Nombre = pronosticoIndividual.getPartido().getEquipo2().getNombre();
-		        String equipoNombre = pronosticoIndividual.getEquipo().getNombre();
-		        String persona = pronosticoIndividual.getParticipante();
-		        ResultadoEnum res = pronosticoIndividual.getResultado();
-		        pronosticosTableModel.addRow(new Object[]{part1Nombre + " vs " + part2Nombre, equipoNombre, res, persona});
-		    }
+		for (Pronostico pronosticoIndividual : listaPronostico) {
+		    String part1Nombre = pronosticoIndividual.getPartido().getEquipo1().getNombre();
+		    String part2Nombre = pronosticoIndividual.getPartido().getEquipo2().getNombre();
+		    String equipoNombre = pronosticoIndividual.getEquipo().getNombre();
+		    String persona = pronosticoIndividual.getParticipante();
+		    ResultadoEnum res = pronosticoIndividual.getResultado();
+		    pronosticosTableModel.addRow(new Object[]{part1Nombre + " vs " + part2Nombre, equipoNombre, res, persona});
+		}
 
-		    JTable pronosticosTable = new JTable(pronosticosTableModel);
-		    pronosticosTable.setEnabled(false);
-		    JScrollPane pronosticosScrollPane = new JScrollPane(pronosticosTable);
-		    pronosticosFrame.getContentPane().add(pronosticosScrollPane);
-		    pronosticosFrame.setVisible(true);
+		JTable pronosticosTable = new JTable(pronosticosTableModel);
+		pronosticosTable.setEnabled(false);
+		JScrollPane pronosticosScrollPane = new JScrollPane(pronosticosTable);
+		pronosticosFrame.getContentPane().add(pronosticosScrollPane);
+		pronosticosFrame.setVisible(true);
 }
 	
 	private void mostrarPartidos() {
@@ -373,8 +351,8 @@ public class InterfazGUI extends JFrame
 	    partidosFrame.setVisible(true);
 	}
 
-	private void mostrarFases() 
-	{
+	private void mostrarFases() {
+
 	    JFrame fasesFrame = new JFrame("Fases");
 	    fasesFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	    fasesFrame.setBounds(100, 100, 600, 400);
@@ -386,11 +364,11 @@ public class InterfazGUI extends JFrame
 
 	    ArrayList<Fase> faseOrdenada = GestorCompetencia.crearFases(sistemaPronostico.getRondaOrdenada());
 
-	    for (Fase fase : faseOrdenada) 
-	    {
+	    for (Fase fase : faseOrdenada) {
+
 	        FaseEnum nombre = fase.getNombreFase();
-	        for (Ronda ronda : fase.getListaRonda()) 
-	        {
+
+	        for (Ronda ronda : fase.getListaRonda()) {
 	            int numero = ronda.getNro();
 	            fasesTableModel.addRow(new Object[]{nombre, numero});
 	        }

@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter @Setter
 public class ArchivoPronostico
 {
+	// Asignacion de la lectura del archivo CSV de Pronosticos
 	@CsvBindByPosition(position= 0)
 	private String Participante;
 	@CsvBindByPosition(position= 1)

@@ -25,7 +25,5 @@ public class Pronostico
 		{
 			return 0;
 		}
-
 	}
-	
 }

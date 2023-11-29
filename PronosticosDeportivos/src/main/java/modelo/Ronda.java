@@ -8,9 +8,8 @@ import lombok.Setter;
 public class Ronda 
 {
 	/*
-	 *  nro Ronda, ListaPartidos , nombreFase
+	 *  Nro Ronda, ListaPartidos, nombreFase
 	 */
-
 	private int nro;
 	private ArrayList<Partido> listaPartidos;
 	private FaseEnum nombreFase;
@@ -25,7 +24,6 @@ public class Ronda
 		
 		for (Pronostico pronosticoIndividual : listaPronostico) 
 		{
-			
 			for (Partido partidoIndividual : listaPartidos) 
 			{
 				if (pronosticoIndividual.getPartido().equals(partidoIndividual) && pronosticoIndividual.getParticipante().equals(nomParticipante)) 
@@ -35,7 +33,6 @@ public class Ronda
 				
 				}
 			}
-			
 		}
 		return puntoFinal;
 	}
@@ -46,7 +43,6 @@ public class Ronda
 	public int aciertos(ArrayList<Pronostico> listaPronostico, String nomParticipante) 
 	 {
 	        int aciertos = 0;
-
 	        for (Pronostico pronosticoIndividual : listaPronostico) 
 	        {
 	            for (Partido partidoIndividual : listaPartidos)
@@ -64,6 +60,7 @@ public class Ronda
 	        }
 	        return aciertos;
 	}
+
 	/*
 	 *  booleano de los aciertos
 	 */
@@ -72,7 +69,4 @@ public class Ronda
 		int aciertos = aciertos(listaPronostico, nomParticipante);
 		return aciertos == listaPartidos.size();
 	}
-
 }
-
-	
