@@ -2,7 +2,7 @@
 
 Integrantes:
 
-Facundo Ezequiel Rizo
-Balthasar De Weert
-Tomas Morinigo
-Gimena Escalante
+Facundo Ezequiel Rizo,
+Balthasar De Weert,
+Tomas Morinigo,
+Gimena Escalante,
