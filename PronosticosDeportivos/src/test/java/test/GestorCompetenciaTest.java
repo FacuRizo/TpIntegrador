@@ -1,29 +1,15 @@
-/*package test;
+package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.Assert.*;
-
-
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import modelo.ArchivoPronostico;
-import modelo.ArchivoResultado;
+import modelo.Fase;
 import modelo.GestorCompetencia;
-import modelo.Interfaz;
-import modelo.LectorArchivosPronosticos;
-import modelo.LectorArchivosResultado;
-import modelo.Partido;
 import modelo.Pronostico;
+import modelo.Puntaje;
 import modelo.Ronda;
 import modelo.SistemaPronostico;
 
@@ -44,17 +30,24 @@ public class GestorCompetenciaTest
 	    	String rutaAbsolutaPronosticos = archivoPronosticos.getAbsolutePath(); 
 	    
 	    	// Calculo de los puntos
-	    	String[] archivos = new String[]{rutaAbsolutaResultados, rutaAbsolutaPronosticos};
+	    	String[] args = new String[]{rutaAbsolutaResultados, rutaAbsolutaPronosticos};
 	        SistemaPronostico sistema = new SistemaPronostico();
-	        sistema.sistemaInicio(archivos);
+	        Puntaje.setPuntaje(3);
+	        Puntaje.setPuntajeExtra(3);
+	        sistema.sistemaInicio(args, 1, false);
 
-	       	Map<String, ArrayList<Pronostico>> pronosticoHash = GestorCompetencia.listaPronosticoHash(sistema.pronosticoFinal);
-	       	Map<String,ArrayList <Integer>> puntosPorParticipante = GestorCompetencia.puntosPartyAcertadas(pronosticoHash, sistema.rondaOrdenada);
-	    
-	       	List<Integer> puntos = puntosPorParticipante.get("Mariana");
+
+	        ArrayList<Ronda> rondaOrdenada=sistema.getRondaOrdenada();
+	        ArrayList<Fase> faseOrdenada=sistema.getFaseOrdenada();
+	        ArrayList<Pronostico> pronosticoFinal=sistema.getPronosticoFinal();
+	       	Map<String, ArrayList<Pronostico>> pronosticoHash = GestorCompetencia.listaPronosticoHash(pronosticoFinal);
+	    	Map<String, ArrayList<ArrayList<Integer>>> puntosPorParticipante =GestorCompetencia.puntosPartyAcertadas(pronosticoHash, rondaOrdenada, faseOrdenada);
+	 
+	      	int puntos = GestorCompetencia.puntosTotales(puntosPorParticipante, "Mariana");
+
 	       	
 	       	// Comparacion
-	       	assertEquals(puntos.get(0), 12);
+	       	assertEquals(puntos,15);
 
 	    }	  
-}*/
+}
